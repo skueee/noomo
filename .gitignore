@@ -3,3 +3,6 @@ env/
 
 .venv
 venv/
+
+model/
+__pycache__

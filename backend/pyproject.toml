@@ -1,0 +1,22 @@
+[project]
+name = "noomo-backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "skueee", email = "skueee@outlook.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "accelerate>=1.14.0",
+    "fastapi[standard]>=0.141.1",
+    "torch>=2.14.0",
+    "transformers>=5.16.1",
+]
+
+[project.scripts]
+download = "noomo_backend:download"
+
+[build-system]
+requires = ["uv_build>=0.12.8,<0.13.0"]
+build-backend = "uv_build"
