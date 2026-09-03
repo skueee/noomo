@@ -1,3 +1,6 @@
+// noomo - a llm predictions game
+// Copyright (C) 2026  skueee
+
 {
   "compilerOptions": {
     "target": "ES2017",

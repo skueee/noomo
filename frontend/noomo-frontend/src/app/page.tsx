@@ -1,3 +1,6 @@
+// noomo - a llm predictions game
+// Copyright (C) 2026  skueee
+
 import Image from "next/image";
 
 export default function Home() {
