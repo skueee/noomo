@@ -4,8 +4,8 @@
 [project]
 name = "noomo-backend"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
+description = "The backend for Noomo, a game about predicting what an LLM could say."
+readme = "https://github.com/skueee/noomo/blob/main/README.md"
 authors = [
     { name = "skueee", email = "skueee@outlook.com" }
 ]
