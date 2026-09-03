@@ -1,3 +1,6 @@
+# noomo - a llm predictions game
+# Copyright (C) 2026  skueee
+
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from pydantic import BaseModel
