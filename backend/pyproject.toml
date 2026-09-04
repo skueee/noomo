@@ -19,9 +19,16 @@ dependencies = [
 
 [project.scripts]
 download = "noomo_backend:download"
+
+[tool.uvs.scripts]
 dev = "uv run fastapi dev src/noomo_backend/main.py --port 8001"
 server = "uv run fastapi src/noomo_backend/main.py --port 8001"
 
 [build-system]
 requires = ["uv_build>=0.12.8,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "uv-script>=0.1.9",
+]

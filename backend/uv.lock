@@ -1,6 +1,3 @@
-# noomo - a llm predictions game
-# Copyright (C) 2026  skueee
-
 version = 1
 revision = 3
 requires-python = ">=3.14"
@@ -555,6 +552,11 @@ dependencies = [
     { name = "transformers" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "uv-script" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "accelerate", specifier = ">=1.14.0" },
@@ -562,6 +564,9 @@ requires-dist = [
     { name = "torch", specifier = ">=2.14.0" },
     { name = "transformers", specifier = ">=5.16.1" },
 ]
+
+[package.metadata.requires-dev]
+dev = [{ name = "uv-script", specifier = ">=0.1.9" }]
 
 [[package]]
 name = "numpy"
@@ -1332,6 +1337,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/53/0c/06f8b233b8fd13b9e5ee11424ef85419ba0d8ba0b3138bf360be2ff56953/urllib3-2.7.0.tar.gz", hash = "sha256:231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c", size = 433602, upload-time = "2026-05-07T16:13:18.596Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/7f/3e/5db95bcf282c52709639744ca2a8b149baccf648e39c8cc87553df9eae0c/urllib3-2.7.0-py3-none-any.whl", hash = "sha256:9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897", size = 131087, upload-time = "2026-05-07T16:13:17.151Z" },
+]
+
+[[package]]
+name = "uv-script"
+version = "0.1.9"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/b7/32/4dbefcb9bb6197b588f1edfa6c50d2b18342e8c2b002be796ee3a0453ad3/uv_script-0.1.9.tar.gz", hash = "sha256:fda8dd28a1e037d0f41b5f0a0e7f15dd1ecc3deb03fe799f895fd7be639a81ac", size = 5962, upload-time = "2026-02-12T22:21:42.211Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/82/ba/10dc44db65ce99720c908c0c6c4cca52d8f2f222b67ca91db5d5ccb38062/uv_script-0.1.9-py3-none-any.whl", hash = "sha256:aea2f419f605617e27c6a3b5ce198c043231f79fdc770cdd0feb58258dd2c456", size = 7710, upload-time = "2026-02-12T22:21:40.802Z" },
 ]
 
 [[package]]
