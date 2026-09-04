@@ -2,10 +2,12 @@
 # Copyright (C) 2026  skueee
 
 import gc
+import os
+from pathlib import Path
+
 import torch
 import transformers
-from pathlib import Path
-import os
+
 
 def load_model():
     print("Loading model")

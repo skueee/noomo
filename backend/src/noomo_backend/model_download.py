@@ -6,6 +6,7 @@ import sys
 
 from huggingface_hub import snapshot_download
 
+
 def dir_check():
     if not os.path.isfile("main.py"):
         print("Please run this from the root of the project backend")
