@@ -1,6 +1,8 @@
 # noomo - a llm predictions game
 # Copyright (C) 2026  skueee
 
+import uvicorn
+
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -20,7 +22,7 @@ async def lifespan(app: FastAPI):
 
     yield
 
-    model_script.clear_model()
+    model_script.clear_model(model, tokenizer)
 
 app = FastAPI(lifespan=lifespan)
 
