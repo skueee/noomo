@@ -4,11 +4,15 @@
 import gc
 import torch
 import transformers
+from pathlib import Path
+import os
 
 def load_model():
     print("Loading model")
-    tokenizer = transformers.AutoTokenizer.from_pretrained("./model", local_files_only=True)
-    model = transformers.AutoModelForCausalLM.from_pretrained("./model", device_map="auto", local_files_only=True)
+    parent_dir = Path(__file__).resolve().parent
+    model_path = os.path.join(parent_dir, "model")
+    tokenizer = transformers.AutoTokenizer.from_pretrained(model_path, local_files_only=True)
+    model = transformers.AutoModelForCausalLM.from_pretrained(model_path, device_map="auto", local_files_only=True)
     print("Finished loading model")
     return model, tokenizer
 
