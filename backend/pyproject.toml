@@ -19,6 +19,8 @@ dependencies = [
 
 [project.scripts]
 download = "noomo_backend:download"
+dev = "fastapi dev src/noomo_backend/main.py --port 8001"
+server = "fastapi src/noomo_backend/main.py --port 8001"
 
 [build-system]
 requires = ["uv_build>=0.12.8,<0.13.0"]
