@@ -22,7 +22,8 @@ download = "noomo_backend:download"
 
 [tool.uvs.scripts]
 dev = "uv run fastapi dev src/noomo_backend/main.py --port 8001 --host 0.0.0.0"
-server = "uv run fastapi src/noomo_backend/main.py --port 8001 --host 0.0.0.0"
+server = "uv run fastapi run src/noomo_backend/main.py --port 8001 --host 0.0.0.0"
+docker-build = "docker build -t noomo ."
 
 [build-system]
 requires = ["uv_build>=0.12.8,<0.13.0"]
@@ -32,3 +33,12 @@ build-backend = "uv_build"
 dev = [
     "uv-script>=0.1.9",
 ]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
