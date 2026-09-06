@@ -10,6 +10,7 @@ import torch
 import transformers
 
 
+# Loads the model in memory. Should be executed only one time.
 def load_model():
     print("Loading model")
     parent_dir = Path(__file__).resolve().parent
@@ -19,6 +20,7 @@ def load_model():
     print("Finished loading model")
     return model, tokenizer
 
+# Prediction thing
 def predict(model, tokenizer, text, words_count):
     inputs = tokenizer(text, return_tensors="pt")
 
@@ -29,6 +31,7 @@ def predict(model, tokenizer, text, words_count):
         0, -1, :
     ]
 
+    # Tokens that should not be generated
     bad_words_ids = [
         tokenizer.eos_token_id,
         tokenizer.pad_token_id,
@@ -37,6 +40,7 @@ def predict(model, tokenizer, text, words_count):
         tokenizer.encode("\n", add_special_tokens=False)[0]
     ]
 
+    # Put the probability of bad tokens to -infinity (they should not appear ig)
     for bad_id in bad_words_ids:
         if bad_id is not None:
             next_token_logits[bad_id] = float('-inf')
@@ -45,26 +49,31 @@ def predict(model, tokenizer, text, words_count):
 
     top_probs, top_indices = torch.topk(probabilities, 50)
 
+    # Saves 50 candidates to sort
     candidates = []
     for i in range(50):
         token_text = tokenizer.decode([top_indices[i]])
         prob = top_probs[i].item() * 100
         candidates.append({"word":token_text, "prob":prob})
 
+    # Eliminates bad candidates
     response = []
     words = []
     for i in candidates:
         choose = True
 
+        # Delete space at the start of a word (if any)
         pattern = re.compile(r"\s[A-Za-z0-9]+", re.IGNORECASE)
         if pattern.match(i["word"]):
             curr_word = i["word"][1:]
         else:
             curr_word = i["word"]
 
+        # Check if the word does not exists yet
         if curr_word in words:
             choose = False
 
+        # Checks if every character in the word is a latin letter (no number, kanji, special character...)
         pattern = re.compile(r"^\p{Script=Latin}+$")
         if not pattern.match(curr_word):
             choose = False

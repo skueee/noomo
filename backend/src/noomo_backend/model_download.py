@@ -6,6 +6,9 @@ import sys
 
 from huggingface_hub import snapshot_download
 
+# Github does not let me upload the model, so you will need to download it with this script
+# Please execute this from the root of the project
+# You can also use "uv download" if you have uv installed (which is recommended for this project)
 
 def dir_check():
     if not os.path.isfile("main.py"):

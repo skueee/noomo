@@ -1,20 +1,21 @@
 # noomo - a llm predictions game
 # Copyright (C) 2026  skueee
 
-import uvicorn
-
 from contextlib import asynccontextmanager
 
+import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 
 from . import model_script
 
 
+# The request body for /predict
 class PredictionsConfig(BaseModel):
     words_count: int
     sentence: str
 
+# Loads the model and the tokenizer, saves it as model and tokenizer
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global model, tokenizer
@@ -26,6 +27,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+# Predicting words
+# Returns an array with dicts containing "word" and "prob" (the word and the probability)
 @app.post("/predict")
 def generate_prediction(config: PredictionsConfig):
     return model_script.predict(model, tokenizer, config.sentence, config.words_count)
