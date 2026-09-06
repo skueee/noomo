@@ -482,6 +482,7 @@ source = { editable = "." }
 dependencies = [
     { name = "accelerate" },
     { name = "fastapi", extra = ["standard"] },
+    { name = "regex" },
     { name = "torch", version = "2.14.0", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform == 'darwin'" },
     { name = "torch", version = "2.14.0+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin'" },
     { name = "transformers" },
@@ -496,6 +497,7 @@ dev = [
 requires-dist = [
     { name = "accelerate", specifier = ">=1.14.0" },
     { name = "fastapi", extras = ["standard"], specifier = ">=0.141.1" },
+    { name = "regex", specifier = ">=2026.9.3" },
     { name = "torch", specifier = ">=2.14.0", index = "https://download.pytorch.org/whl/cpu" },
     { name = "transformers", specifier = ">=5.16.1" },
 ]
