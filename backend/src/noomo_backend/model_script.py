@@ -3,9 +3,9 @@
 
 import gc
 import os
-import regex as re
 from pathlib import Path
 
+import regex as re
 import torch
 import transformers
 
