@@ -18,8 +18,8 @@ class PredictionsConfig(BaseModel):
 # Loads the model and the tokenizer, saves it as model and tokenizer
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global model, tokenizer
-    model, tokenizer = model_script.load_model()
+    global model, tokenizer, length_bias
+    model, tokenizer, length_bias = model_script.load_model()
 
     yield
 
@@ -31,4 +31,4 @@ app = FastAPI(lifespan=lifespan)
 # Returns an array with dicts containing "word" and "prob" (the word and the probability)
 @app.post("/predict")
 def generate_prediction(config: PredictionsConfig):
-    return model_script.predict(model, tokenizer, config.sentence, config.words_count)
+    return model_script.predict(model, tokenizer, length_bias, config.sentence, config.words_count)

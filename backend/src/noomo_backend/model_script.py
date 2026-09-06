@@ -2,6 +2,7 @@
 # Copyright (C) 2026  skueee
 
 import gc
+import math
 import os
 from pathlib import Path
 
@@ -9,6 +10,19 @@ import regex as re
 import torch
 import transformers
 
+# Push the model towards longer words
+def create_length_bias_vector(tokenizer, device, vocab_size):
+    length_bias = torch.zeros(vocab_size, device=device)
+    latin_pattern = re.compile(r"^\p{Script=Latin}+$")
+
+    for token, token_id in tokenizer.get_vocab().items():
+        if token_id < vocab_size:
+            clean_token = token.lstrip("Ġ ##").strip()
+
+            if latin_pattern.match(clean_token):
+                length_bias[token_id] = math.log1p(len(clean_token))
+
+    return length_bias
 
 # Loads the model in memory. Should be executed only one time.
 def load_model():
@@ -17,11 +31,12 @@ def load_model():
     model_path = os.path.join(parent_dir, "model")
     tokenizer = transformers.AutoTokenizer.from_pretrained(model_path, local_files_only=True)
     model = transformers.AutoModelForCausalLM.from_pretrained(model_path, device_map="auto", local_files_only=True)
+    length_bias = create_length_bias_vector(tokenizer, model.device, model.config.vocab_size)
     print("Finished loading model")
-    return model, tokenizer
+    return model, tokenizer, length_bias
 
 # Prediction thing
-def predict(model, tokenizer, text, words_count):
+def predict(model, tokenizer, length_bias, text, words_count, temperature=10, alpha=2):
     inputs = tokenizer(text, return_tensors="pt")
 
     with torch.no_grad():
@@ -45,7 +60,9 @@ def predict(model, tokenizer, text, words_count):
         if bad_id is not None:
             next_token_logits[bad_id] = float('-inf')
 
-    probabilities = torch.softmax(next_token_logits, dim=-1)
+    bias = length_bias.to(next_token_logits.device)
+    scaled_logits = (next_token_logits + (alpha * bias)) / temperature
+    probabilities = torch.softmax(scaled_logits, dim=-1)
 
     top_probs, top_indices = torch.topk(probabilities, 50)
 
