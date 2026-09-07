@@ -82,3 +82,22 @@ def cleanup_sentences():
         cursor.execute(cleanup_query)
         connection.commit()
         print(f"Deleted {cursor.rowcount} inactive sentences.")
+
+def get_top_sentences(elements_count):
+    with create_connection() as connection:
+        query = """
+        SELECT *
+        FROM top_sentences
+        ORDER BY occurence DESC
+        LIMIT ?;
+        """
+
+        cursor = connection.cursor()
+        cursor.execute(query,(elements_count,),)
+        response = cursor.fetchall()
+
+        list = []
+        for i in response:
+            list.append(i[0])
+
+        return list

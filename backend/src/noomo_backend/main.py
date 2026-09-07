@@ -36,3 +36,7 @@ def generate_prediction(config: PredictionsConfig):
     if config.prod:
         db.insert_sentence(config.sentence)
     return model_script.predict(model, tokenizer, length_bias, config.sentence, config.words_count)
+
+@app.get("/top-sentences")
+def get_top_sentences(count: int):
+    return db.get_top_sentences(count)
