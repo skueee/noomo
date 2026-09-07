@@ -6,3 +6,5 @@ venv/
 
 model/
 __pycache__
+
+noomo.db

@@ -7,7 +7,7 @@ import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from . import model_script
+from . import db, model_script
 
 
 # The request body for /predict
@@ -20,6 +20,7 @@ class PredictionsConfig(BaseModel):
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global model, tokenizer, length_bias
+    db.initdb()
     model, tokenizer, length_bias = model_script.load_model()
 
     yield
@@ -32,4 +33,6 @@ app = FastAPI(lifespan=lifespan)
 # Returns an array with dicts containing "word" and "prob" (the word and the probability)
 @app.post("/predict")
 def generate_prediction(config: PredictionsConfig):
+    if config.prod:
+        db.insert_sentence(config.sentence)
     return model_script.predict(model, tokenizer, length_bias, config.sentence, config.words_count)
