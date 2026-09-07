@@ -14,6 +14,7 @@ from . import model_script
 class PredictionsConfig(BaseModel):
     words_count: int
     sentence: str
+    prod: bool = False
 
 # Loads the model and the tokenizer, saves it as model and tokenizer
 @asynccontextmanager

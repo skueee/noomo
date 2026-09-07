@@ -10,6 +10,7 @@ import regex as re
 import torch
 import transformers
 
+
 # Push the model towards longer words
 def create_length_bias_vector(tokenizer, device, vocab_size):
     length_bias = torch.zeros(vocab_size, device=device)
@@ -108,5 +109,5 @@ def clear_model(model, tokenizer):
     torch.cuda.empty_cache()
 
 if __name__ == "__main__":
-    model, tokenizer = load_model()
-    predict(model, tokenizer, "Lorem Ipsum", 5)
+    model, tokenizer, length_bias = load_model()
+    predict(model, tokenizer, length_bias, "Lorem Ipsum", 5)
