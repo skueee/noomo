@@ -25,6 +25,7 @@ download = "noomo_backend:download"
 dev = "uv run fastapi dev src/noomo_backend/main.py --port 8001 --host 0.0.0.0"
 server = "uv run fastapi run src/noomo_backend/main.py --port 8001 --host 0.0.0.0"
 docker-build = "docker build -t ghcr.io/skueee/noomo:latest ."
+docker-push = "docker push ghcr.io/skueee/noomo:latest"
 
 [build-system]
 requires = ["uv_build>=0.12.8,<0.13.0"]
