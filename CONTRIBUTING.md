@@ -12,7 +12,7 @@ Issue templates are coming soon :)
 This repository is structured with two main directories :
 **Backend :** The backend of the game, a FastAPI project using UV.
 **Frontend :** The frontend of the game, what you will see, made in HTML, JS and CSS.
-**For dev instructions, please check the CONTRIBUTING.md in the Backend and Frontent folders**
+**For dev instructions, please check the README.md in the Backend and Frontent folders**
 
 ## Liscencing
 Please add this at the top of each file :
