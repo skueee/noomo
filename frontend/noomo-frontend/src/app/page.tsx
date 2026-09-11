@@ -1,9 +1,13 @@
 // noomo - a llm predictions game
 // Copyright (C) 2026  skueee
 
-import React from 'react';
+'use client'
+
+import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Home() {
+  const [sentence, setSentence] = useState('')
   return (
     <div className="min-h-screen w-full flex flex-col">
 
@@ -28,22 +32,25 @@ export default function Home() {
                 id="play-input"
                 type="text"
                 placeholder="Enter text..."
+                value={sentence}
+                onChange={(e) => setSentence(e.target.value)}
                 className="kalnia-main text-[32px] w-full h-full py-2 px-3 rounded-lg focus:outline-none text-foreground -mt-1"
               />
 
-              <button className="cursor-pointer mt-1 mx-auto inline-flex items-center justify-center gap-2 px-3 w-[70px] h-[70px] rounded-[15px] bg-foreground text-background hover:bg-opacity-90 transition-colors">
-                <svg
-                  width="70"
-                  height="70"
-                  viewBox="0 0 44 31"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M1.25 15.7541H42.75M24.75 29.7541L42.75 15.7541L24.75 1.75412" />
-                </svg></button>
+              <Link href={{ pathname: '/game', query: { sentence: sentence },}}>
+                <button className="cursor-pointer mt-1 mx-auto inline-flex items-center justify-center gap-2 px-3 w-[70px] h-[70px] rounded-[15px] bg-foreground text-background hover:bg-opacity-90 transition-colors">
+                  <svg
+                    width="70"
+                    height="70"
+                    viewBox="0 0 44 31"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M1.25 15.7541H42.75M24.75 29.7541L42.75 15.7541L24.75 1.75412" />
+                </svg></button></Link>
             </div>
 
 
