@@ -16,6 +16,7 @@ class PredictionsConfig(BaseModel):
     sentence: str
     prod: bool = False
 
+
 # Loads the model and the tokenizer, saves it as model and tokenizer
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -27,7 +28,9 @@ async def lifespan(app: FastAPI):
 
     model_script.clear_model(model, tokenizer)
 
+
 app = FastAPI(lifespan=lifespan)
+
 
 # Predicting words
 # Returns an array with dicts containing "word" and "prob" (the word and the probability)
@@ -35,7 +38,10 @@ app = FastAPI(lifespan=lifespan)
 def generate_prediction(config: PredictionsConfig):
     if config.prod:
         db.insert_sentence(config.sentence)
-    return model_script.predict(model, tokenizer, length_bias, config.sentence, config.words_count)
+    return model_script.predict(
+        model, tokenizer, length_bias, config.sentence, config.words_count
+    )
+
 
 @app.get("/top-sentences")
 def get_top_sentences(count: int):

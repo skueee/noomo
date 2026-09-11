@@ -6,10 +6,13 @@ from contextlib import contextmanager
 from pathlib import Path
 from sqlite3 import Error
 
-db_path = os.getenv("DB_PATH", os.path.join(Path(__file__).resolve().parent, "data/noomo.db"))
+db_path = os.getenv(
+    "DB_PATH", os.path.join(Path(__file__).resolve().parent, "data/noomo.db")
+)
+
 
 @contextmanager
-def create_connection(path = db_path):
+def create_connection(path=db_path):
     connection = None
     try:
         connection = sqlite3.connect(path)
@@ -23,7 +26,7 @@ def create_connection(path = db_path):
         connection.close()
 
 
-def initdb(path = db_path):
+def initdb(path=db_path):
     with create_connection(path) as connection:
         create_top_sentences_table = """
         CREATE TABLE IF NOT EXISTS top_sentences(
@@ -39,6 +42,7 @@ def initdb(path = db_path):
 
         cleanup_sentences()
 
+
 def insert_sentence(sentence):
     with create_connection() as connection:
         request = """
@@ -50,7 +54,7 @@ def insert_sentence(sentence):
         """
 
         cursor = connection.cursor()
-        cursor.execute(request, (sentence, time.strftime('%Y-%m-%d')))
+        cursor.execute(request, (sentence, time.strftime("%Y-%m-%d")))
         connection.commit()
 
 
@@ -63,6 +67,7 @@ def search_for_sentence(sentence):
             (sentence,),
         )
         return bool(cursor.fetchone()[0])
+
 
 def cleanup_sentences():
     with create_connection() as connection:
@@ -83,6 +88,7 @@ def cleanup_sentences():
         connection.commit()
         print(f"Deleted {cursor.rowcount} inactive sentences.")
 
+
 def get_top_sentences(elements_count):
     with create_connection() as connection:
         query = """
@@ -93,7 +99,10 @@ def get_top_sentences(elements_count):
         """
 
         cursor = connection.cursor()
-        cursor.execute(query,(elements_count,),)
+        cursor.execute(
+            query,
+            (elements_count,),
+        )
         response = cursor.fetchall()
 
         list = []
