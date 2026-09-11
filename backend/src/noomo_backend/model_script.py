@@ -100,6 +100,11 @@ def predict(model, tokenizer, length_bias, text, words_count, temperature=10, al
             response.append({"word":curr_word, "prob":i["prob"]})
             words.append(curr_word)
 
+    current_index = 1
+    for i in response:
+        i["index"] = current_index
+        current_index += 1
+
     return response[:words_count]
 
 def clear_model(model, tokenizer):
