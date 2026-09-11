@@ -63,3 +63,19 @@ uvs dev
 Docs are located at `localhost:8001/docs` and `localhost:8001/redoc`
 
 Changing the DB_PATH environment variable will change the file used for the databse (specify the full path, even if the file does not exists yet)
+
+---
+
+### Developing
+
+#### Linting
+
+Please execute these commands before your PR :
+
+```
+uvs format
+```
+and
+```
+uvs check
+```
