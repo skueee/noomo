@@ -5,6 +5,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from 'next/link'
 
 export default function Home() {
   const router = useRouter();
@@ -79,30 +80,14 @@ export default function Home() {
                 </svg>
               </button>
             </div>
-
-            <div className="challenge-rect flex flex-row px-3 w-[500px] h-[54px]">
-              <label className="kalnia-main text-[32px] text-background w-full h-full">
-                Daily challenge
-              </label>
-
-              <button className="cursor-pointer mx-auto inline-flex items-center justify-center gap-2 px-1 w-[50px] h-[50px] rounded-[15px] text-background hover:bg-opacity-90 transition-colors">
-                <svg
-                  width="50"
-                  height="50"
-                  viewBox="0 0 44 31"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M1.25 15.7541H42.75M24.75 29.7541L42.75 15.7541L24.75 1.75412" />
-                </svg>
-              </button>
-            </div>
+            <p className="text-[22px]">Good luck !</p>
           </div>
         </div>
       </main>
+
+      <footer className="flex items-center justify-center py-[10px]">
+        <p>Made with 🎔 by <a href="https://github.com/skueee" className="hover:underline">skue</a></p>
+      </footer>
     </div>
   );
 }
