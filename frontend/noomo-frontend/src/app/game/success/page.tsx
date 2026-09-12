@@ -15,11 +15,13 @@ export default function SuccessPage() {
   const [sentence, setSentence] = useState<string>("");
   const [words, setWords] = useState<Word[]>([]);
   const [tries, setTries] = useState<number>(0);
+  const [clues, setClues] = useState<number>(0)
 
   useEffect(() => {
     const storedSentence = sessionStorage.getItem("sentence");
     const storedWords = sessionStorage.getItem("words");
     const storedTries = sessionStorage.getItem("tries");
+    const storedClues = sessionStorage.getItem("clues")
 
     if (storedSentence) {
       setSentence(storedSentence);
@@ -32,12 +34,17 @@ export default function SuccessPage() {
     if (storedTries) {
       setTries(Number(storedTries));
     }
+
+    if (storedClues) {
+      setClues(Number(storedClues))
+    }
   }, []);
 
   return (
     <div className="h-screen w-full flex flex-col">
-      <header className="w-full flex items-center justify-center px-6 py-3">
-        <a className="kalnia-title text-[48px]">Noomo</a>
+      <header className="w-full grid grid-cols-3 items-center px-[75px] py-3">
+        <a className="kalnia-title text-[32px] justify-self-start">Noomo</a>
+        <a className="kalnia-main text-[48px] justify-self-center text-center">{sentence}</a>
       </header>
 
       <main className="items-center justify-center px-[50px] pb-[40px] w-full flex flex-1">
@@ -50,7 +57,7 @@ export default function SuccessPage() {
           </div>
 
           <div className="items-center justify-center flex flex-row flex-1 gap-10">
-            <StatsView tries={tries}></StatsView>
+            <StatsView tries={tries} clues={clues}></StatsView>
             <div className="w-[0px] border-[1px] h-[500px]" />
             <WordsView words={words}></WordsView>
           </div>
@@ -60,11 +67,12 @@ export default function SuccessPage() {
   );
 }
 
-export function StatsView({ tries }) {
+export function StatsView({ tries, clues }) {
   return (
     <div className="flex flex-col items-end justify-center">
       <a className="kalnia-title text-[48px]">Stats</a>
       <a className="kalnia-main text-[32px]">{tries} Tries</a>
+      <a className="kalnia-main text-[32px]">{clues} Clues</a>
     </div>
   );
 }

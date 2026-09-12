@@ -16,6 +16,7 @@ export default function Game() {
   const [score, setScore] = useState<number>(0);
   const [wordsFound, setWordsFound] = useState<number[]>([]);
   const [tries, setTries] = useState<number>(0);
+  const [cluesCount, setCluesCount] = useState<number>(0)
 
   const handleInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && input.trim()) {
@@ -33,7 +34,7 @@ export default function Game() {
     if (wordsFound.includes(Number(index))) {
       return word;
     } else {
-      return "?";
+      return getWordPlaceholder(word, cluesCount);
     }
   };
 
@@ -44,6 +45,12 @@ export default function Game() {
       return false;
     }
   };
+
+  const getAClue = () => {
+    if (cluesCount != 5) {
+      setCluesCount(cluesCount + 1)
+    }
+  }
 
   useEffect(() => {
     async function getPreds() {
@@ -58,7 +65,7 @@ export default function Game() {
 
   useEffect(() => {
     if (score == 10) {
-      goToResult(words, tries, router);
+      goToResult(words, tries, cluesCount, router);
     }
   }, [score]);
 
@@ -73,8 +80,10 @@ export default function Game() {
 
   return (
     <div className="h-screen w-full flex flex-col">
-      <header className="w-full flex items-center justify-center px-6 py-3">
-        <a className="kalnia-title text-[48px]">Noomo</a>
+      <header className="w-full grid grid-cols-3 items-center px-[75px] py-3">
+        <a className="kalnia-title text-[32px] justify-self-start">Noomo</a>
+        <a className="kalnia-main text-[48px] justify-self-center text-center">{sentence}</a>
+        <button onClick={getAClue} className="cursor-pointer hover:underline hover:rounded-[10px] kalnia-main text-[32px] border-[2px] px-[10px] py-[2px] rounded-[20px] justify-self-end">Clue {cluesCount}/5</button>
       </header>
 
       <main className="items-center justify-center px-[50px] pb-[40px] w-full flex flex-1">
@@ -146,12 +155,24 @@ function checkWord(input: string, words, wordsFound: number[]) {
   return [match, matchIndex];
 }
 
-function goToResult(words: array, tries: number, router: AppRouterInstance) {
-  saveToStorage(words, tries);
+function getWordPlaceholder(word: string, clues: number) {
+  let toReveal: number
+  if (word.length > clues) {
+    toReveal = clues
+  } else {
+    toReveal = word.length - 1
+  }
+
+  return word.substring(0, toReveal) + "•".repeat(word.length - toReveal)
+}
+
+function goToResult(words: array, tries: number, clues: number, router: AppRouterInstance) {
+  saveToStorage(words, tries, clues);
   router.push("/game/success");
 }
 
-function saveToStorage(words: array, tries: number) {
+function saveToStorage(words: array, tries: number, clues: number) {
   sessionStorage.setItem("words", JSON.stringify(words));
   sessionStorage.setItem("tries", tries);
+  sessionStorage.setItem("clues", clues)
 }
