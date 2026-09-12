@@ -35,6 +35,14 @@ export default function Game() {
     }
   };
 
+  const isFound = (index: number) => {
+    if (wordsFound.includes(index)) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   useEffect(() => {
     async function getPreds() {
       const result = await getPredictions(sentence);
@@ -81,6 +89,7 @@ export default function Game() {
                   key={word.index}
                   numero={word.index}
                   word={getWordToDisplay(word.index, word.word)}
+                  found={isFound(word.index)}
                 ></WordLine>
               ))}
             </div>
@@ -94,11 +103,14 @@ export default function Game() {
 type WordLineProps = {
   numero: number;
   word: string;
+  found: boolean
 };
 
-export function WordLine({ numero, word }: WordLineProps) {
+export function WordLine({ numero, word, found }: WordLineProps) {
+  const color = found ? "text-green-600" : "--foreground"
+
   return (
-    <div className="flex flex-line gap-[10px]">
+    <div className={`flex flex-line gap-[10px] ${color}`}>
       <a className="kalnia-title text-[48px]">{numero}.</a>
       <a className="kalnia-title text-[48px]">{word}</a>
     </div>
