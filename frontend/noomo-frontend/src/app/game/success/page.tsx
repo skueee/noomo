@@ -3,8 +3,6 @@
 
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { ScriptProps } from "next/script";
 import { useEffect, useState } from "react";
 
 interface Word {

@@ -1,6 +1,6 @@
 'use client';
 
-const Error = ({ error, reset }: { error: Error; reset: () => void })=> {
+const Error = ({ error }: { error: Error })=> {
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
