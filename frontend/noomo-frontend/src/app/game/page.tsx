@@ -5,22 +5,26 @@
 
 import { useState, useEffect } from "react";
 import { getPredictions } from "@/app/actions";
+import { useRouter } from "next/navigation";
 
 export default function Game() {
+  const router = useRouter()
+
   const [input, setInput] = useState("");
   const [words, setWords] = useState<array>(null);
   const [sentence, setSentence] = useState<string>("")
   const [score, setScore] = useState<number>(0);
   const [wordsFound, setWordsFound] = useState<number[]>([]);
+  const [tries, setTries] = useState<number>(0)
 
   const handleInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && input.trim()) {
+      setTries(tries + 1)
       const result = checkWord(input.trim(), words, wordsFound);
       if (result[0]) {
         setScore(score + 1);
         setWordsFound((prev) => [...prev, result[1]]);
       }
-
       setInput("");
     }
   };
@@ -51,6 +55,12 @@ export default function Game() {
 
     getPreds();
   }, []);
+
+  useEffect(() => {
+    if (score == 10) {
+      goToResult(words, tries, router)
+    }
+  }, [score])
 
   if (!words) {
     return (
@@ -134,4 +144,14 @@ function checkWord(input: string, words, wordsFound: number[]) {
   }
 
   return [match, matchIndex];
+}
+
+function goToResult(words: array, tries: number, router: AppRouterInstance) {
+  saveToStorage(words, tries)
+  router.push("/game/success")
+}
+
+function saveToStorage(words: array, tries: number) {
+  sessionStorage.setItem("words", JSON.stringify(words));
+  sessionStorage.setItem("tries", tries)
 }
