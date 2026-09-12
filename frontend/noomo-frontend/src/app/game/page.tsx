@@ -6,6 +6,7 @@
 import { useState, useEffect } from "react";
 import { getPredictions } from "@/app/actions";
 import { useRouter } from "next/navigation";
+import Link from 'next/link'
 
 export default function Game() {
   const router = useRouter();
@@ -81,7 +82,7 @@ export default function Game() {
   return (
     <div className="h-screen w-full flex flex-col">
       <header className="w-full grid grid-cols-3 items-center px-[75px] py-3">
-        <a className="kalnia-title text-[32px] justify-self-start">Noomo</a>
+        <Link href="/" className="cursor-pointer hover:underline hover:before:content-['_\2190'] kalnia-title text-[32px] justify-self-start">Noomo</Link>
         <a className="kalnia-main text-[48px] justify-self-center text-center">{sentence}</a>
         <button onClick={getAClue} className="cursor-pointer hover:underline hover:rounded-[10px] kalnia-main text-[32px] border-[2px] px-[10px] py-[2px] rounded-[20px] justify-self-end">Clue {cluesCount}/5</button>
       </header>

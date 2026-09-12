@@ -4,6 +4,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from 'next/link'
 
 interface Word {
   word: string;
@@ -43,7 +44,7 @@ export default function SuccessPage() {
   return (
     <div className="h-screen w-full flex flex-col">
       <header className="w-full grid grid-cols-3 items-center px-[75px] py-3">
-        <a className="kalnia-title text-[32px] justify-self-start">Noomo</a>
+        <Link href="/" className="cursor-pointer hover:underline hover:before:content-['_\2190'] kalnia-title text-[32px] justify-self-start">Noomo</Link>
         <a className="kalnia-main text-[48px] justify-self-center text-center">{sentence}</a>
       </header>
 
