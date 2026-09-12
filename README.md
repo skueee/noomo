@@ -2,8 +2,6 @@
 A game where you need to guess words that an LLM generates
 
 ![hackatime-stats](https://hackatime.hackclub.com/api/v1/badge/U0BQF6EGX0V/skueee/noomo)
-![stardance-badge](https://img.shields.io/badge/stardance-yellow?link=https%3A%2F%2Fstardance.hackclub.com%2Fprojects%2F52704
-)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/skueee/noomo?label=total%20commits)
 ![GitHub language count](https://img.shields.io/github/languages/count/skueee/noomo)
 ![GitHub Issues](https://img.shields.io/github/issues/skueee/noomo)
