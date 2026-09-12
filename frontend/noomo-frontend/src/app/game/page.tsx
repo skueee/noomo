@@ -46,8 +46,13 @@ export default function Game() {
   }, [])
 
   if (!words) {
-      return <a>Loading</a>;
-    }
+    return (
+      <div className="h-screen w-full flex flex-col items-center justify-center gap-5">
+        <div className="w-24 h-24 border-[7px] border-t-background rounded-full animate-spin" />
+        <a className="kalnia-title text-[48px]">Loading</a>
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen w-full flex flex-col">
