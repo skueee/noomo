@@ -94,8 +94,9 @@ def predict(model, tokenizer, length_bias, text, words_count, temperature=10, al
             curr_word = i["word"]
 
         # Check if the word does not exists yet
-        if curr_word in words:
-            choose = False
+        for i in words:
+            if curr_word.lower() == i.lower():
+                choose = False
 
         # Checks if every character in the word is a latin letter (no number, kanji, special character...)
         pattern = re.compile(r"^\p{Script=Latin}+$")
