@@ -13,6 +13,5 @@ export async function getPredictions(input: string) {
       })
   })
   const json = await response.json()
-  console.log(json)
   return json
 }

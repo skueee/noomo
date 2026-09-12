@@ -18,7 +18,6 @@ export default function Game() {
       if (result[0]) {
         setScore(score + 1)
         setWordsFound((prev) => [...prev, result[1]])
-        console.log(wordsFound)
       }
 
       setInput('')
@@ -26,12 +25,9 @@ export default function Game() {
   }
 
   const getWordToDisplay = (index: number, word: String) => {
-    console.log(wordsFound)
     if (wordsFound.includes(Number(index))) {
-      console.log("The word number " + index + " returns " + word)
       return word
     } else {
-      console.log("The word number " + index + " returns ?")
       return "?"
     }
   }
@@ -108,7 +104,7 @@ function checkWord(input: string, words, wordsFound: number[]) {
 
   let match: boolean = false
   let matchIndex: number = 0
-  console.log(words)
+
   for (let i = 0; i < words.length && !match; i++) {
     const wordToCheck = words[i].word
     if (input.localeCompare(wordToCheck, undefined, {sensitivity: 'base'}) === 0 && !wordsFound.includes(words[i].index)) {
@@ -116,6 +112,6 @@ function checkWord(input: string, words, wordsFound: number[]) {
       matchIndex = words[i].index
     }
   }
-  console.log(matchIndex)
+
   return [match, matchIndex]
 }
