@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation'
 
 export default function Game() {
   const [input, setInput] = useState('')
-  const [words, setWords] = useState<any>(null)
+  const [words, setWords] = useState<array>(null)
   const searchParams = useSearchParams()
   const sentence = searchParams.get('sentence')
   const [score, setScore] = useState<number>(0)
@@ -24,7 +24,7 @@ export default function Game() {
     }
   }
 
-  const getWordToDisplay = (index: number, word: String) => {
+  const getWordToDisplay = (index: number, word: string) => {
     if (wordsFound.includes(Number(index))) {
       return word
     } else {
