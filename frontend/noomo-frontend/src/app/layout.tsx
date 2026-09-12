@@ -6,9 +6,9 @@ import { Kalnia } from "next/font/google";
 import "./globals.css";
 
 const kalnia = Kalnia({
-  subsets: ['latin'],
-  variable: '--font-kalnia',
-})
+  subsets: ["latin"],
+  variable: "--font-kalnia",
+});
 
 export const metadata: Metadata = {
   title: "Noomo",

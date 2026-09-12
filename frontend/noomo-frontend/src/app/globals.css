@@ -4,8 +4,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ECDCB3;
-  --foreground: #251D09;
+  --background: #ecdcb3;
+  --foreground: #251d09;
 }
 
 @theme inline {
@@ -13,13 +13,13 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-custom: var(--font-kalnia)
+  --font-custom: var(--font-kalnia);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ECDCB3;
-    --foreground: #251D09;
+    --background: #ecdcb3;
+    --foreground: #251d09;
   }
 }
 
@@ -36,38 +36,35 @@ body {
 }
 
 .kalnia-title {
-    font-family: "Kalnia", serif;
-    font-optical-sizing: auto;
-    font-weight: 541;
-    font-style: normal;
-    font-variation-settings:
-      "wdth" 102;
+  font-family: "Kalnia", serif;
+  font-optical-sizing: auto;
+  font-weight: 541;
+  font-style: normal;
+  font-variation-settings: "wdth" 102;
 }
 
 .kalnia-main {
-    font-family: "Kalnia", serif;
-    font-optical-sizing: auto;
-    font-weight: 388;
-    font-style: normal;
-    font-variation-settings:
-      "wdth" 100;
+  font-family: "Kalnia", serif;
+  font-optical-sizing: auto;
+  font-weight: 388;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
 .kalnia-bold {
-    font-family: "Kalnia", serif;
-    font-optical-sizing: auto;
-    font-weight: 541;
-    font-style: normal;
-    font-variation-settings:
-      "wdth" 100;
+  font-family: "Kalnia", serif;
+  font-optical-sizing: auto;
+  font-weight: 541;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
 .play-rect {
-    border-radius: 20px;
-    border: 4px solid var(--foreground);
+  border-radius: 20px;
+  border: 4px solid var(--foreground);
 }
 
 .challenge-rect {
-    background-color : var(--color-foreground);
-    border-radius: 15px;
+  background-color: var(--color-foreground);
+  border-radius: 15px;
 }

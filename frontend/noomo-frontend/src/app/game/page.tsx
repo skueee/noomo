@@ -1,45 +1,45 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react';
-import { getPredictions } from '@/app/actions'
-import { useSearchParams } from 'next/navigation'
+import { useState, useEffect } from "react";
+import { getPredictions } from "@/app/actions";
+import { useSearchParams } from "next/navigation";
 
 export default function Game() {
-  const [input, setInput] = useState('')
-  const [words, setWords] = useState<array>(null)
-  const searchParams = useSearchParams()
-  const sentence = searchParams.get('sentence')
-  const [score, setScore] = useState<number>(0)
-  const [wordsFound, setWordsFound] = useState<number[]>([])
+  const [input, setInput] = useState("");
+  const [words, setWords] = useState<array>(null);
+  const searchParams = useSearchParams();
+  const sentence = searchParams.get("sentence");
+  const [score, setScore] = useState<number>(0);
+  const [wordsFound, setWordsFound] = useState<number[]>([]);
 
   const handleInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && input.trim()) {
-      const result = checkWord(input.trim(), words, wordsFound)
+    if (e.key === "Enter" && input.trim()) {
+      const result = checkWord(input.trim(), words, wordsFound);
       if (result[0]) {
-        setScore(score + 1)
-        setWordsFound((prev) => [...prev, result[1]])
+        setScore(score + 1);
+        setWordsFound((prev) => [...prev, result[1]]);
       }
 
-      setInput('')
+      setInput("");
     }
-  }
+  };
 
   const getWordToDisplay = (index: number, word: string) => {
     if (wordsFound.includes(Number(index))) {
-      return word
+      return word;
     } else {
-      return "?"
+      return "?";
     }
-  }
+  };
 
   useEffect(() => {
     async function getPreds() {
-      const result = await getPredictions(sentence)
-      setWords(result)
+      const result = await getPredictions(sentence);
+      setWords(result);
     }
 
-    getPreds()
-  }, [])
+    getPreds();
+  }, []);
 
   if (!words) {
     return (
@@ -58,7 +58,6 @@ export default function Game() {
 
       <main className="items-center justify-center px-[50px] pb-[40px] w-full flex flex-1">
         <div className="h-full rounded-[20px] flex flex-col items-center w-full border-[5px]">
-
           <div className="w-full rounded-b-[10px] border-b-[3px] px-[30px] h-[120px] items-center flex">
             <input
               id="play-input"
@@ -75,15 +74,18 @@ export default function Game() {
           <div className="w-full h-full items-center justify-center flex px-150">
             <div className="w-full h-full items-center justify-center flex flex-col">
               {words.map((word) => (
-                <WordLine key={word.index} numero={word.index} word={getWordToDisplay(word.index, word.word)}></WordLine>
+                <WordLine
+                  key={word.index}
+                  numero={word.index}
+                  word={getWordToDisplay(word.index, word.word)}
+                ></WordLine>
               ))}
             </div>
           </div>
-
         </div>
       </main>
     </div>
-  )
+  );
 }
 
 type WordLineProps = {
@@ -94,24 +96,27 @@ type WordLineProps = {
 export function WordLine({ numero, word }: WordLineProps) {
   return (
     <div className="flex flex-line gap-[10px]">
-      <a className='kalnia-title text-[48px]'>{numero}.</a>
-      <a className='kalnia-title text-[48px]'>{word}</a>
+      <a className="kalnia-title text-[48px]">{numero}.</a>
+      <a className="kalnia-title text-[48px]">{word}</a>
     </div>
-  )
+  );
 }
 
 function checkWord(input: string, words, wordsFound: number[]) {
-
-  let match: boolean = false
-  let matchIndex: number = 0
+  let match: boolean = false;
+  let matchIndex: number = 0;
 
   for (let i = 0; i < words.length && !match; i++) {
-    const wordToCheck = words[i].word
-    if (input.localeCompare(wordToCheck, undefined, {sensitivity: 'base'}) === 0 && !wordsFound.includes(words[i].index)) {
-      match = true
-      matchIndex = words[i].index
+    const wordToCheck = words[i].word;
+    if (
+      input.localeCompare(wordToCheck, undefined, { sensitivity: "base" }) ===
+        0 &&
+      !wordsFound.includes(words[i].index)
+    ) {
+      match = true;
+      matchIndex = words[i].index;
     }
   }
 
-  return [match, matchIndex]
+  return [match, matchIndex];
 }
