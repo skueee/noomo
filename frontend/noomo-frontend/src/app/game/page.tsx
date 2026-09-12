@@ -9,7 +9,7 @@ import { getPredictions } from "@/app/actions";
 export default function Game() {
   const [input, setInput] = useState("");
   const [words, setWords] = useState<array>(null);
-  const sentence = sessionStorage.getItem("sentence");
+  const [sentence, setSentence] = useState<string>("")
   const [score, setScore] = useState<number>(0);
   const [wordsFound, setWordsFound] = useState<number[]>([]);
 
@@ -43,8 +43,10 @@ export default function Game() {
 
   useEffect(() => {
     async function getPreds() {
-      const result = await getPredictions(sentence);
+      const storedSentence = sessionStorage.getItem("sentence");
+      const result = await getPredictions(storedSentence);
       setWords(result);
+      setSentence(storedSentence)
     }
 
     getPreds();
