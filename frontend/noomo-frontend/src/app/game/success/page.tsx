@@ -4,7 +4,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from 'next/link'
+import Link from "next/link";
 
 interface Word {
   word: string;
@@ -16,13 +16,13 @@ export default function SuccessPage() {
   const [sentence, setSentence] = useState<string>("");
   const [words, setWords] = useState<Word[]>([]);
   const [tries, setTries] = useState<number>(0);
-  const [clues, setClues] = useState<number>(0)
+  const [clues, setClues] = useState<number>(0);
 
   useEffect(() => {
     const storedSentence = sessionStorage.getItem("sentence");
     const storedWords = sessionStorage.getItem("words");
     const storedTries = sessionStorage.getItem("tries");
-    const storedClues = sessionStorage.getItem("clues")
+    const storedClues = sessionStorage.getItem("clues");
 
     if (storedSentence) {
       setSentence(storedSentence);
@@ -37,15 +37,22 @@ export default function SuccessPage() {
     }
 
     if (storedClues) {
-      setClues(Number(storedClues))
+      setClues(Number(storedClues));
     }
   }, []);
 
   return (
     <div className="h-screen w-full flex flex-col">
       <header className="w-full grid grid-cols-3 items-center px-[75px] py-3">
-        <Link href="/" className="cursor-pointer hover:underline hover:before:content-['_\2190'] kalnia-title text-[32px] justify-self-start">Noomo</Link>
-        <a className="kalnia-main text-[48px] justify-self-center text-center">{sentence}</a>
+        <Link
+          href="/"
+          className="cursor-pointer hover:underline hover:before:content-['_\2190'] kalnia-title text-[32px] justify-self-start"
+        >
+          Noomo
+        </Link>
+        <a className="kalnia-main text-[48px] justify-self-center text-center">
+          {sentence}
+        </a>
       </header>
 
       <main className="items-center justify-center px-[50px] pb-[40px] w-full flex flex-1">

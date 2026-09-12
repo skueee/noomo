@@ -5,7 +5,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from 'next/link'
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
@@ -86,7 +86,12 @@ export default function Home() {
       </main>
 
       <footer className="flex items-center justify-center py-[10px]">
-        <p>Made with 🎔 by <a href="https://github.com/skueee" className="hover:underline">skue</a></p>
+        <p>
+          Made with 🎔 by{" "}
+          <a href="https://github.com/skueee" className="hover:underline">
+            skue
+          </a>
+        </p>
       </footer>
     </div>
   );
