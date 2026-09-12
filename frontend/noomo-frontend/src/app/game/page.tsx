@@ -72,7 +72,7 @@ export default function Game() {
           </div>
 
           <div className="w-full h-full items-center justify-center flex px-150">
-            <div className="w-full h-full items-center justify-center flex flex-col">
+            <div className="gap-x-75 gap-y-2 grid grid-cols-1 md:grid-flow-col md:grid-rows-5 items-center justify-center">
               {words.map((word) => (
                 <WordLine
                   key={word.index}
