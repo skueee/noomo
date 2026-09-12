@@ -3,11 +3,25 @@
 
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+
+  const router = useRouter();
   const [sentence, setSentence] = useState("");
+
+  const goToGame = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    sessionStorage.setItem("sentence", sentence)
+    router.push("/game")
+  }
+
+  useEffect(() => {
+    sessionStorage.clear()
+  }, [])
+
   return (
     <div className="min-h-screen w-full flex flex-col">
       <header className="w-full flex items-center justify-center px-6 py-4">
@@ -49,22 +63,20 @@ export default function Home() {
                 className="kalnia-main text-[32px] w-full h-full py-2 px-3 rounded-lg focus:outline-none text-foreground -mt-1"
               />
 
-              <Link href={{ pathname: "/game", query: { sentence: sentence } }}>
-                <button className="cursor-pointer mt-1 mx-auto inline-flex items-center justify-center gap-2 px-3 w-[70px] h-[70px] rounded-[15px] bg-foreground text-background hover:bg-opacity-90 transition-colors">
-                  <svg
-                    width="70"
-                    height="70"
-                    viewBox="0 0 44 31"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M1.25 15.7541H42.75M24.75 29.7541L42.75 15.7541L24.75 1.75412" />
-                  </svg>
-                </button>
-              </Link>
+              <button onClick={goToGame} className="cursor-pointer mt-1 mx-auto inline-flex items-center justify-center gap-2 px-3 w-[70px] h-[70px] rounded-[15px] bg-foreground text-background hover:bg-opacity-90 transition-colors">
+                <svg
+                  width="70"
+                  height="70"
+                  viewBox="0 0 44 31"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M1.25 15.7541H42.75M24.75 29.7541L42.75 15.7541L24.75 1.75412" />
+                </svg>
+              </button>
             </div>
 
             <div className="challenge-rect flex flex-row px-3 w-[500px] h-[54px]">

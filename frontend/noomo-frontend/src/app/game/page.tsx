@@ -5,13 +5,11 @@
 
 import { useState, useEffect } from "react";
 import { getPredictions } from "@/app/actions";
-import { useSearchParams } from "next/navigation";
 
 export default function Game() {
   const [input, setInput] = useState("");
   const [words, setWords] = useState<array>(null);
-  const searchParams = useSearchParams();
-  const sentence = searchParams.get("sentence");
+  const sentence = sessionStorage.getItem("sentence");
   const [score, setScore] = useState<number>(0);
   const [wordsFound, setWordsFound] = useState<number[]>([]);
 
