@@ -8,18 +8,18 @@ import { getPredictions } from "@/app/actions";
 import { useRouter } from "next/navigation";
 
 export default function Game() {
-  const router = useRouter()
+  const router = useRouter();
 
   const [input, setInput] = useState("");
   const [words, setWords] = useState<array>(null);
-  const [sentence, setSentence] = useState<string>("")
+  const [sentence, setSentence] = useState<string>("");
   const [score, setScore] = useState<number>(0);
   const [wordsFound, setWordsFound] = useState<number[]>([]);
-  const [tries, setTries] = useState<number>(0)
+  const [tries, setTries] = useState<number>(0);
 
   const handleInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && input.trim()) {
-      setTries(tries + 1)
+      setTries(tries + 1);
       const result = checkWord(input.trim(), words, wordsFound);
       if (result[0]) {
         setScore(score + 1);
@@ -39,18 +39,18 @@ export default function Game() {
 
   const isFound = (index: number) => {
     if (wordsFound.includes(index)) {
-      return true
+      return true;
     } else {
-      return false
+      return false;
     }
-  }
+  };
 
   useEffect(() => {
     async function getPreds() {
       const storedSentence = sessionStorage.getItem("sentence");
       const result = await getPredictions(storedSentence);
       setWords(result);
-      setSentence(storedSentence)
+      setSentence(storedSentence);
     }
 
     getPreds();
@@ -58,9 +58,9 @@ export default function Game() {
 
   useEffect(() => {
     if (score == 10) {
-      goToResult(words, tries, router)
+      goToResult(words, tries, router);
     }
-  }, [score])
+  }, [score]);
 
   if (!words) {
     return (
@@ -113,11 +113,11 @@ export default function Game() {
 type WordLineProps = {
   numero: number;
   word: string;
-  found: boolean
+  found: boolean;
 };
 
 export function WordLine({ numero, word, found }: WordLineProps) {
-  const color = found ? "text-green-600" : "--foreground"
+  const color = found ? "text-green-600" : "--foreground";
 
   return (
     <div className={`flex flex-line gap-[10px] ${color}`}>
@@ -147,11 +147,11 @@ function checkWord(input: string, words, wordsFound: number[]) {
 }
 
 function goToResult(words: array, tries: number, router: AppRouterInstance) {
-  saveToStorage(words, tries)
-  router.push("/game/success")
+  saveToStorage(words, tries);
+  router.push("/game/success");
 }
 
 function saveToStorage(words: array, tries: number) {
   sessionStorage.setItem("words", JSON.stringify(words));
-  sessionStorage.setItem("tries", tries)
+  sessionStorage.setItem("tries", tries);
 }

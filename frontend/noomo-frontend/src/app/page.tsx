@@ -7,19 +7,18 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-
   const router = useRouter();
   const [sentence, setSentence] = useState("");
 
   const goToGame = async (e: React.MouseEvent) => {
     e.preventDefault();
-    sessionStorage.setItem("sentence", sentence)
-    router.push("/game")
-  }
+    sessionStorage.setItem("sentence", sentence);
+    router.push("/game");
+  };
 
   useEffect(() => {
-    sessionStorage.clear()
-  }, [])
+    sessionStorage.clear();
+  }, []);
 
   return (
     <div className="min-h-screen w-full flex flex-col">
@@ -62,7 +61,10 @@ export default function Home() {
                 className="kalnia-main text-[32px] w-full h-full py-2 px-3 rounded-lg focus:outline-none text-foreground -mt-1"
               />
 
-              <button onClick={goToGame} className="cursor-pointer mt-1 mx-auto inline-flex items-center justify-center gap-2 px-3 w-[70px] h-[70px] rounded-[15px] bg-foreground text-background hover:bg-opacity-90 transition-colors">
+              <button
+                onClick={goToGame}
+                className="cursor-pointer mt-1 mx-auto inline-flex items-center justify-center gap-2 px-3 w-[70px] h-[70px] rounded-[15px] bg-foreground text-background hover:bg-opacity-90 transition-colors"
+              >
                 <svg
                   width="70"
                   height="70"
