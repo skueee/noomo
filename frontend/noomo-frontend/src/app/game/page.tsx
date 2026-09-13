@@ -8,11 +8,17 @@ import { getPredictions } from "@/app/actions";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+type WordStructure = {
+  word: string;
+  prob: number;
+  index: number;
+};
+
 export default function Game() {
   const router = useRouter();
 
   const [input, setInput] = useState("");
-  const [words, setWords] = useState<array>(null);
+  const [words, setWords] = useState<WordStructure[]>([]);
   const [sentence, setSentence] = useState<string>("");
   const [score, setScore] = useState<number>(0);
   const [wordsFound, setWordsFound] = useState<number[]>([]);
