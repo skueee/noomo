@@ -81,14 +81,14 @@ export default function Game() {
 
   return (
     <div className="h-screen w-full flex flex-col">
-      <header className="w-full grid grid-cols-3 items-center px-[75px] py-3">
+      <header className="w-full grid grid-cols-2 md:grid-cols-3 items-center px-[75px] py-3">
         <Link
           href="/"
-          className="cursor-pointer hover:underline hover:before:content-['_\2190'] kalnia-title text-[32px] justify-self-start"
+          className="hidden md:flex cursor-pointer hover:underline hover:before:content-['_\2190'] kalnia-title text-[32px] justify-self-start"
         >
           Noomo
         </Link>
-        <a className="kalnia-main text-[48px] justify-self-center text-center">
+        <a className="kalnia-main text-[48px] justify-self-start md:justify-self-center text-center">
           {sentence}
         </a>
         <button
@@ -114,8 +114,8 @@ export default function Game() {
             <a className="kalnia-main text-[48px]">{score}/10</a>
           </div>
 
-          <div className="w-full h-full items-center justify-center flex px-150">
-            <div className="gap-x-150 gap-y-2 grid grid-cols-1 md:grid-flow-col md:grid-rows-5 items-center justify-center">
+          <div className="w-full h-full items-center justify-center flex md:px-150">
+            <div className="sm:gap-x-100 lg:gap-x-150 gap-y-2 grid grid-cols-1 md:grid-flow-col md:grid-rows-5 items-center justify-center">
               {words.map((word) => (
                 <WordLine
                   key={word.index}

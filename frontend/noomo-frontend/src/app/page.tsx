@@ -58,11 +58,13 @@ export default function Home() {
 
       <main className="w-full flex flex-1 items-center justify-center p-4">
         <div className="flex flex-col items-center gap-5 max-w-md w-full p-0">
-          <h1 className="kalnia-title text-[75px]">Noomo</h1>
+          <h1 className="kalnia-title text-[50px] sm:text-[65px] md:text-[75px]">
+            Noomo
+          </h1>
 
           <div className="flex flex-col items-center gap-3 max-w-md w-full p-0">
             <div
-              className="play-rect flex flex-row w-[520px] h-[92px] px-1"
+              className="play-rect flex flex-row w-full max-w-[520px] h-[92px] px-1"
               style={{ boxShadow: "inset 0px -6px 0px 0px #251d09" }}
             >
               <input
@@ -71,7 +73,7 @@ export default function Home() {
                 placeholder="Enter text..."
                 value={sentence}
                 onChange={(e) => setSentence(e.target.value)}
-                className="kalnia-main text-[32px] w-full h-full py-2 px-3 rounded-lg focus:outline-none text-foreground -mt-1"
+                className="kalnia-main text-[32px] flex-1 h-full py-2 px-3 rounded-lg focus:outline-none text-foreground -mt-1 min-w-0"
               />
 
               <button
