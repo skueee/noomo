@@ -27,8 +27,8 @@ jobs:
       run: pip install huggingface-hub
 
     - name: Download the model
-      working-directory: ./backend
-      run: python3 src/noomo_backend/model_download.py
+      working-directory: ./backend/src/noomo_backend/
+      run: python3 model_download.py
 
     - name: Login to GHCR
       uses: docker/login-action@v3
