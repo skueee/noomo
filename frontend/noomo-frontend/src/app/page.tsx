@@ -5,11 +5,9 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const possibleGoodLuckSentences = [
   "Good Luck !",
-  "May the force be with you !",
   "You can do it !",
   "It's not thaaat hard, you know...",
   "Give it a try !",

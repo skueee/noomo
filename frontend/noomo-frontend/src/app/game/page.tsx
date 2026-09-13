@@ -68,7 +68,7 @@ export default function Game() {
     if (score == 10) {
       goToResult(words, tries, cluesCount, router);
     }
-  }, [score]);
+  }, [score, cluesCount, router, tries, words]);
 
   if (!words) {
     return (
