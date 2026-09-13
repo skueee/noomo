@@ -1,0 +1,30 @@
+name: Create Tag on Release Merge
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - release
+
+jobs:
+  create-tag:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Create and Push Git Tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          RAW_TITLE="${{ github.event.pull_request.title }}"
+          TAG_NAME=$(echo "$RAW_TITLE" | tr -c 'a-zA-Z0-9._-' '_')
+
+          git tag "$TAG_NAME"
+          git push origin "$TAG_NAME"
