@@ -7,6 +7,8 @@ A game where you need to guess words that an LLM generates
 ![GitHub Issues](https://img.shields.io/github/issues/skueee/noomo)
 ![GitHub Repo stars](https://img.shields.io/github/stars/skueee/noomo?style=flat&color=yellow)
 
+![](assets/screenshot.png)
+
 ### **[Website](https://noomo-skue.vercel.app/)**
 
 ## How to play ?
