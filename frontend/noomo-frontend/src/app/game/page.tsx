@@ -81,19 +81,19 @@ export default function Game() {
 
   return (
     <div className="h-screen w-full flex flex-col">
-      <header className="w-full grid grid-cols-2 md:grid-cols-3 items-center px-[75px] py-3">
+      <header className="w-full grid grid-cols-2 md:grid-cols-3 items-center px-[15px] md:px-[75px] py-3">
         <Link
           href="/"
           className="hidden md:flex cursor-pointer hover:underline hover:before:content-['_\2190'] kalnia-title text-[32px] justify-self-start"
         >
           Noomo
         </Link>
-        <a className="kalnia-main text-[48px] justify-self-start md:justify-self-center text-center">
+        <a className="kalnia-main text-[28px] sm:text-[48px] justify-self-start md:justify-self-center text-center">
           {sentence}
         </a>
         <button
           onClick={getAClue}
-          className="cursor-pointer hover:underline hover:rounded-[10px] kalnia-main text-[32px] border-[2px] px-[10px] py-[2px] rounded-[20px] justify-self-end"
+          className="cursor-pointer hover:underline hover:rounded-[10px] kalnia-main text-[20px] sm:text-[32px] border-[2px] px-[10px] py-[2px] rounded-[20px] justify-self-end"
         >
           Clue {cluesCount}/5
         </button>
@@ -143,8 +143,8 @@ export function WordLine({ numero, word, found }: WordLineProps) {
 
   return (
     <div className={`flex flex-line gap-[10px] ${color}`}>
-      <a className="kalnia-title text-[48px]">{numero}.</a>
-      <a className="kalnia-title text-[48px]">{word}</a>
+      <a className="kalnia-title text-[32px] sm:text-[48px]">{numero}.</a>
+      <a className="kalnia-title text-[32px] sm:text-[48px]">{word}</a>
     </div>
   );
 }
