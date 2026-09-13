@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 8000",
-    "build": "next build -p 8000",
+    "build": "next build",
     "start": "next start -p 8000",
     "lint": "pnpm exec eslint .",
     "format": "pnpm exec prettier . --write"

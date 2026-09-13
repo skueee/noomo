@@ -46,7 +46,12 @@ def load_model():
 
 # Prediction thing
 def predict(model, tokenizer, length_bias, text, words_count, temperature=5, alpha=2):
-    inputs = tokenizer(text, return_tensors="pt").to(model.device)
+    if text[:-1] == " ":
+        clean_text = text
+    else:
+        clean_text = text + " "
+
+    inputs = tokenizer(clean_text, return_tensors="pt").to(model.device)
 
     with torch.no_grad():
         outputs = model(**inputs)

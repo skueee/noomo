@@ -102,7 +102,13 @@ export default function SuccessPage() {
   );
 }
 
-export function StatsView({ tries, clues, duration }) {
+type StatsViewProps = {
+  tries: number;
+  clues: number;
+  duration: number;
+};
+
+export function StatsView({ tries, clues, duration }: StatsViewProps) {
   const durationArray = getMinutesAndSeconds(duration);
   return (
     <div className="flex flex-col items-end justify-center">
@@ -122,7 +128,11 @@ export function StatsView({ tries, clues, duration }) {
   );
 }
 
-export function WordsView({ words }) {
+type WordsViewProps = {
+  words: Word[];
+};
+
+export function WordsView({ words }: WordsViewProps) {
   return (
     <div className="flex flex-col items-start justify-center">
       <a className="kalnia-title text-[36px] text-[40px] md:text-[48px]">
@@ -145,14 +155,17 @@ function getMinutesAndSeconds(duration: number) {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
 
+  let minutesStr: string;
+  let secondsStr: string;
+
   if (minutes.toString().length < 2) {
-    const minutesStr = "0" + minutes.toString();
+    minutesStr = "0" + minutes.toString();
   } else {
     minutesStr = minutes.toString();
   }
 
   if (seconds.toString().length < 2) {
-    const secondsStr = "0" + seconds.toString();
+    secondsStr = "0" + seconds.toString();
   } else {
     secondsStr = seconds.toString();
   }
