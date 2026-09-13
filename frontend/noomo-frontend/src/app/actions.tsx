@@ -4,6 +4,10 @@
 "use server";
 
 export async function getPredictions(input: string) {
+  const isProduction =
+    typeof process.env.NEXT_PUBLIC_VERCEL_ENV !== "undefined" &&
+    process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
+
   const response = await fetch("https://api.skue.hackclub.app/predict", {
     cache: "no-store",
     method: "POST",
@@ -11,7 +15,7 @@ export async function getPredictions(input: string) {
     body: JSON.stringify({
       words_count: 10,
       sentence: input,
-      prod: false,
+      prod: isProduction,
     }),
   });
   const json = await response.json();
