@@ -45,8 +45,8 @@ def load_model():
 
 
 # Prediction thing
-def predict(model, tokenizer, length_bias, text, words_count, temperature=10, alpha=2):
-    inputs = tokenizer(text, return_tensors="pt")
+def predict(model, tokenizer, length_bias, text, words_count, temperature=5, alpha=2):
+    inputs = tokenizer(text, return_tensors="pt").to(model.device)
 
     with torch.no_grad():
         outputs = model(**inputs)
@@ -94,13 +94,17 @@ def predict(model, tokenizer, length_bias, text, words_count, temperature=10, al
             curr_word = i["word"]
 
         # Check if the word does not exists yet
-        for i in words:
-            if curr_word.lower() == i.lower():
+        for j in words:
+            if curr_word.lower() == j.lower():
                 choose = False
 
         # Checks if every character in the word is a latin letter (no number, kanji, special character...)
         pattern = re.compile(r"^\p{Script=Latin}+$")
         if not pattern.match(curr_word):
+            choose = False
+
+        # Check if the word is minimum 3 characters
+        if len(curr_word) < 3:
             choose = False
 
         if choose:
