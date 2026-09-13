@@ -27,6 +27,7 @@ export default function SuccessPage() {
   const [words, setWords] = useState<Word[]>([]);
   const [tries, setTries] = useState<number>(0);
   const [clues, setClues] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
   const [successSentence, setSuccessSentence] = useState<string>("");
 
   useEffect(() => {
@@ -34,6 +35,7 @@ export default function SuccessPage() {
     const storedWords = sessionStorage.getItem("words");
     const storedTries = sessionStorage.getItem("tries");
     const storedClues = sessionStorage.getItem("clues");
+    const storedDuration = sessionStorage.getItem("duration");
 
     if (storedSentence) {
       setSentence(storedSentence);
@@ -49,6 +51,10 @@ export default function SuccessPage() {
 
     if (storedClues) {
       setClues(Number(storedClues));
+    }
+
+    if (storedDuration) {
+      setDuration(Number(storedDuration));
     }
 
     setSuccessSentence(
@@ -82,7 +88,11 @@ export default function SuccessPage() {
           </div>
 
           <div className="items-center justify-center flex flex-row flex-1 gap-10">
-            <StatsView tries={tries} clues={clues}></StatsView>
+            <StatsView
+              tries={tries}
+              clues={clues}
+              duration={duration}
+            ></StatsView>
             <div className="w-[0px] border-[1px] h-[500px]" />
             <WordsView words={words}></WordsView>
           </div>
@@ -92,7 +102,8 @@ export default function SuccessPage() {
   );
 }
 
-export function StatsView({ tries, clues }) {
+export function StatsView({ tries, clues, duration }) {
+  const durationArray = getMinutesAndSeconds(duration);
   return (
     <div className="flex flex-col items-end justify-center">
       <a className="kalnia-title text-[36px] sm:text-[40px] md:text-[48px]">
@@ -103,6 +114,9 @@ export function StatsView({ tries, clues }) {
       </a>
       <a className="kalnia-main text-[24px] sm:text-[28px] md:text-[32px]">
         {clues} Clues
+      </a>
+      <a className="kalnia-main text-[24px] sm:text-[28px] md:text-[32px]">
+        {durationArray.minutesStr}:{durationArray.secondsStr}
       </a>
     </div>
   );
@@ -124,4 +138,29 @@ export function WordsView({ words }) {
       ))}
     </div>
   );
+}
+
+function getMinutesAndSeconds(duration: number) {
+  const totalSeconds = Math.floor(duration / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+
+  if (minutes.toString().length < 2) {
+    const minutesStr = "0" + minutes.toString();
+  } else {
+    minutesStr = minutes.toString();
+  }
+
+  if (seconds.toString().length < 2) {
+    const secondsStr = "0" + seconds.toString();
+  } else {
+    secondsStr = seconds.toString();
+  }
+
+  return {
+    minutes,
+    minutesStr,
+    seconds,
+    secondsStr,
+  };
 }

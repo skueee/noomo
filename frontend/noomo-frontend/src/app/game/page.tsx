@@ -18,6 +18,7 @@ export default function Game() {
   const [wordsFound, setWordsFound] = useState<number[]>([]);
   const [tries, setTries] = useState<number>(0);
   const [cluesCount, setCluesCount] = useState<number>(0);
+  const [startTime, setStartTime] = useState<number>(0);
 
   const handleInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && input.trim()) {
@@ -59,6 +60,7 @@ export default function Game() {
       const result = await getPredictions(storedSentence);
       setWords(result);
       setSentence(storedSentence);
+      setStartTime(Date.now());
     }
 
     getPreds();
@@ -66,7 +68,7 @@ export default function Game() {
 
   useEffect(() => {
     if (score == 10) {
-      goToResult(words, tries, cluesCount, router);
+      goToResult(words, tries, cluesCount, router, startTime);
     }
   }, [score, cluesCount, router, tries, words]);
 
@@ -184,13 +186,20 @@ function goToResult(
   tries: number,
   clues: number,
   router: AppRouterInstance,
+  startTime: number,
 ) {
-  saveToStorage(words, tries, clues);
+  saveToStorage(words, tries, clues, startTime);
   router.push("/game/success");
 }
 
-function saveToStorage(words: array, tries: number, clues: number) {
+function saveToStorage(
+  words: array,
+  tries: number,
+  clues: number,
+  startTime: number,
+) {
   sessionStorage.setItem("words", JSON.stringify(words));
   sessionStorage.setItem("tries", tries);
   sessionStorage.setItem("clues", clues);
+  sessionStorage.setItem("duration", Date.now() - startTime);
 }
