@@ -39,7 +39,7 @@ pnpm install
 ```
 4. Launch the server
 ```
-pnpm start
+pnpm run dev
 ```
 
 ### The backend
