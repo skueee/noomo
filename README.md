@@ -7,10 +7,11 @@ A game where you need to guess words that an LLM generates
 ![GitHub Issues](https://img.shields.io/github/issues/skueee/noomo)
 ![GitHub Repo stars](https://img.shields.io/github/stars/skueee/noomo?style=flat&color=yellow)
 
+### **[Website](https://noomo-skue.vercel.app/)**
 
 ## How to play ?
 
-1. Open the site : (not deployed yet)
+1. Open the site : [https://noomo-skue.vercel.app/](https://noomo-skue.vercel.app/)
 2. Enter a sentence, click on the button
 3. Enjoy !
 
