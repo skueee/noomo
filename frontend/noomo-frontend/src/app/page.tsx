@@ -101,7 +101,7 @@ export default function Home() {
 
       <footer className="flex items-center justify-center py-[10px]">
         <p>
-          Made with 🎔 by{" "}
+          Made with 🤎 by{" "}
           <a
             target="_blank"
             rel="noopener noreferrer"
