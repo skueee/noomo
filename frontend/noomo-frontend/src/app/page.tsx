@@ -18,7 +18,7 @@ export default function Home() {
   const [sentence, setSentence] = useState("");
   const [goodLuckSentence, setGoodLuckSentence] = useState<string>("");
 
-  const goToGame = async (e: React.FormEvent) => {
+  const goToGame = async (formData: FormData) => {
     sessionStorage.setItem("sentence", sentence);
     router.push("/game");
   };
@@ -63,8 +63,8 @@ export default function Home() {
 
           <div className="flex flex-col items-center gap-3 max-w-md w-full p-0">
             <form
-              action={(e) => {
-                goToGame(e);
+              action={(data) => {
+                goToGame(data);
               }}
               className="play-rect flex flex-row w-full max-w-[520px] h-[92px] px-1"
               style={{ boxShadow: "inset 0px -6px 0px 0px #251d09" }}

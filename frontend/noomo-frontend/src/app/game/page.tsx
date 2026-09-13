@@ -8,6 +8,8 @@ import { getPredictions } from "@/app/actions";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+type AppRouterInstance = ReturnType<typeof useRouter>;
+
 type WordStructure = {
   word: string;
   prob: number;
@@ -30,9 +32,9 @@ export default function Game() {
     if (e.key === "Enter" && input.trim()) {
       setTries(tries + 1);
       const result = checkWord(input.trim(), words, wordsFound);
-      if (result[0]) {
+      if (result.match) {
         setScore(score + 1);
-        setWordsFound((prev) => [...prev, result[1]]);
+        setWordsFound((prev) => [...prev, result.matchIndex]);
       }
       setInput("");
     }
@@ -63,9 +65,13 @@ export default function Game() {
   useEffect(() => {
     async function getPreds() {
       const storedSentence = sessionStorage.getItem("sentence");
-      const result = await getPredictions(storedSentence);
-      setWords(result);
-      setSentence(storedSentence);
+
+      if (storedSentence) {
+        const result = await getPredictions(storedSentence);
+        setWords(result);
+        setSentence(storedSentence);
+      }
+
       setStartTime(Date.now());
     }
 
@@ -157,7 +163,11 @@ export function WordLine({ numero, word, found }: WordLineProps) {
   );
 }
 
-function checkWord(input: string, words, wordsFound: number[]) {
+function checkWord(
+  input: string,
+  words: WordStructure[],
+  wordsFound: number[],
+) {
   let match: boolean = false;
   let matchIndex: number = 0;
 
@@ -173,7 +183,7 @@ function checkWord(input: string, words, wordsFound: number[]) {
     }
   }
 
-  return [match, matchIndex];
+  return { match, matchIndex };
 }
 
 function getWordPlaceholder(word: string, clues: number) {
@@ -188,7 +198,7 @@ function getWordPlaceholder(word: string, clues: number) {
 }
 
 function goToResult(
-  words: array,
+  words: WordStructure[],
   tries: number,
   clues: number,
   router: AppRouterInstance,
@@ -199,13 +209,13 @@ function goToResult(
 }
 
 function saveToStorage(
-  words: array,
+  words: WordStructure[],
   tries: number,
   clues: number,
   startTime: number,
 ) {
   sessionStorage.setItem("words", JSON.stringify(words));
-  sessionStorage.setItem("tries", tries);
-  sessionStorage.setItem("clues", clues);
-  sessionStorage.setItem("duration", Date.now() - startTime);
+  sessionStorage.setItem("tries", tries.toString());
+  sessionStorage.setItem("clues", clues.toString());
+  sessionStorage.setItem("duration", (Date.now() - startTime).toString());
 }
