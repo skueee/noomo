@@ -82,7 +82,7 @@ export default function Game() {
     if (score == 10) {
       goToResult(words, tries, cluesCount, router, startTime);
     }
-  }, [score, cluesCount, router, tries, words]);
+  }, [score, cluesCount, router, tries, words, startTime]);
 
   if (!words) {
     return (
