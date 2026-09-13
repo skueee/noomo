@@ -9,11 +9,11 @@ A game where you need to guess words that an LLM generates
 
 ![](assets/screenshot.png)
 
-### **[Website](https://noomo-skue.vercel.app/)**
+### **[Website](http://noomo.dino.icu/)**
 
 ## How to play ?
 
-1. Open the site : [https://noomo-skue.vercel.app/](https://noomo-skue.vercel.app/)
+1. Open the site : [http://noomo.dino.icu/](http://noomo.dino.icu/)
 2. Enter a sentence, click on the button
 3. Enjoy !
 
@@ -132,10 +132,16 @@ The model is packed into the Dockerimage to have shorter start time.
 
 **uv-script, for the script management :** https://pypi.org/project/uv-script/
 
+**Server provided by [Hackclub Nest](https://hackclub.app/), thanks !**
+
 ### Frontend
 
-**NextJS :** https://nextjs.org/
+**NextJS :** [https://nextjs.org/](https://nextjs.org/)
 
-**TailwindCSS :** https://tailwindcss.com/
+**TailwindCSS :** [https://tailwindcss.com/](https://tailwindcss.com/)
 
-**PNPM :** https://pnpm.io/fr/
+**PNPM :** [https://pnpm.io/fr/](https://pnpm.io/fr/)
+
+**Vercel :** [https://vercel.com/](https://vercel.com/)
+
+**Domain name provided by [Hackclub DNS](https://dns.hackclub.com/), thank you !**
