@@ -7,9 +7,18 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+const possibleGoodLuckSentences = [
+  "Good Luck !",
+  "May the force be with you !",
+  "You can do it !",
+  "It's not thaaat hard, you know...",
+  "Give it a try !",
+];
+
 export default function Home() {
   const router = useRouter();
   const [sentence, setSentence] = useState("");
+  const [goodLuckSentence, setGoodLuckSentence] = useState<string>("");
 
   const goToGame = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -19,6 +28,11 @@ export default function Home() {
 
   useEffect(() => {
     sessionStorage.clear();
+    setGoodLuckSentence(
+      possibleGoodLuckSentences[
+        Math.floor(Math.random() * possibleGoodLuckSentences.length)
+      ],
+    );
   }, []);
 
   return (
@@ -80,7 +94,7 @@ export default function Home() {
                 </svg>
               </button>
             </div>
-            <p className="text-[22px]">Good luck !</p>
+            <p className="text-[22px]">{goodLuckSentence}</p>
           </div>
         </div>
       </main>
@@ -88,7 +102,12 @@ export default function Home() {
       <footer className="flex items-center justify-center py-[10px]">
         <p>
           Made with 🎔 by{" "}
-          <a target="_blank" rel="noopener noreferrer" href="https://github.com/skueee" className="hover:underline">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/skueee"
+            className="hover:underline"
+          >
             skue
           </a>
         </p>

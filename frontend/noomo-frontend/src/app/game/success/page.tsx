@@ -12,11 +12,22 @@ interface Word {
   index: number;
 }
 
+const possibleSuccessSentence = [
+  "Good job !",
+  "Well done !",
+  "Greaaat !",
+  "Nicely done !",
+  "I'm honestly impressed",
+  "Wowieee !",
+  "Not bad, not bad",
+];
+
 export default function SuccessPage() {
   const [sentence, setSentence] = useState<string>("");
   const [words, setWords] = useState<Word[]>([]);
   const [tries, setTries] = useState<number>(0);
   const [clues, setClues] = useState<number>(0);
+  const [successSentence, setSuccessSentence] = useState<string>("");
 
   useEffect(() => {
     const storedSentence = sessionStorage.getItem("sentence");
@@ -39,6 +50,12 @@ export default function SuccessPage() {
     if (storedClues) {
       setClues(Number(storedClues));
     }
+
+    setSuccessSentence(
+      possibleSuccessSentence[
+        Math.floor(Math.random() * possibleSuccessSentence.length)
+      ],
+    );
   }, []);
 
   return (
@@ -59,7 +76,7 @@ export default function SuccessPage() {
         <div className="h-full rounded-[20px] flex flex-col items-center w-full border-[5px]">
           <div className="w-full rounded-b-[10px] border-b-[3px] px-[30px] h-[120px] items-center justify-between flex">
             <a className="kalnia-title text-[48px] text-green-600">
-              Good job !
+              {successSentence}
             </a>
             <a className="kalnia-main text-[48px]">10/10</a>
           </div>
