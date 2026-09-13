@@ -88,7 +88,7 @@ export default function Home() {
       <footer className="flex items-center justify-center py-[10px]">
         <p>
           Made with 🎔 by{" "}
-          <a href="https://github.com/skueee" className="hover:underline">
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/skueee" className="hover:underline">
             skue
           </a>
         </p>
