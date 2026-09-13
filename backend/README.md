@@ -1,5 +1,3 @@
-**WIP**
-
 # The backend of Noomo !
 **Built in python, using Fastapi and UV**
 
