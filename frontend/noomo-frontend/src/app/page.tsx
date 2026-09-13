@@ -18,8 +18,7 @@ export default function Home() {
   const [sentence, setSentence] = useState("");
   const [goodLuckSentence, setGoodLuckSentence] = useState<string>("");
 
-  const goToGame = async (e: React.MouseEvent) => {
-    e.preventDefault();
+  const goToGame = async (e: React.FormEvent) => {
     sessionStorage.setItem("sentence", sentence);
     router.push("/game");
   };
@@ -63,7 +62,10 @@ export default function Home() {
           </h1>
 
           <div className="flex flex-col items-center gap-3 max-w-md w-full p-0">
-            <div
+            <form
+              action={(e) => {
+                goToGame(e);
+              }}
               className="play-rect flex flex-row w-full max-w-[520px] h-[92px] px-1"
               style={{ boxShadow: "inset 0px -6px 0px 0px #251d09" }}
             >
@@ -77,7 +79,7 @@ export default function Home() {
               />
 
               <button
-                onClick={goToGame}
+                type="submit"
                 className="cursor-pointer mt-1 mx-auto inline-flex items-center justify-center gap-2 px-3 w-[70px] h-[70px] rounded-[15px] bg-foreground text-background hover:bg-opacity-90 transition-colors"
               >
                 <svg
@@ -93,7 +95,7 @@ export default function Home() {
                   <path d="M1.25 15.7541H42.75M24.75 29.7541L42.75 15.7541L24.75 1.75412" />
                 </svg>
               </button>
-            </div>
+            </form>
             <p className="text-[22px]">{goodLuckSentence}</p>
           </div>
         </div>
