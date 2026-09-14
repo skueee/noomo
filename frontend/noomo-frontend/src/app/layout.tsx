@@ -22,7 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${kalnia.variable} ${kalnia.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col selection:bg-foreground selection:text-background">
         {children}
         <SpeedInsights />
       </body>

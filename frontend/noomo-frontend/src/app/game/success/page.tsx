@@ -83,7 +83,7 @@ export default function SuccessPage() {
       <main className="items-center justify-center px-[50px] pb-[40px] w-full flex flex-1">
         <div className="h-full rounded-[20px] flex flex-col items-center w-full border-[5px]">
           <div className="w-full rounded-b-[10px] border-b-[3px] px-[30px] h-[120px] items-center justify-between flex">
-            <a className="kalnia-title text-[40px] md:text-[48px] text-green-600">
+            <a className="kalnia-title text-[40px] md:text-[48px] text-green-600 selection:bg-green-600">
               {successSentence}
             </a>
             <a className="kalnia-main text-[40px] md:text-[48px]">10/10</a>
