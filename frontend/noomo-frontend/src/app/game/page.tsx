@@ -84,7 +84,7 @@ export default function Game() {
     }
   }, [score, cluesCount, router, tries, words, startTime]);
 
-  if (!words) {
+  if (words.length < 2) {
     return (
       <div className="h-screen w-full flex flex-col items-center justify-center gap-5">
         <div className="w-24 h-24 border-[7px] border-t-background rounded-full animate-spin" />
