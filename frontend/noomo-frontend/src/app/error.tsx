@@ -1,6 +1,8 @@
 // noomo - a llm predictions game
 // Copyright (C) 2026  skueee
 
+// error page
+
 "use client";
 
 const Error = ({ error }: { error: Error }) => {

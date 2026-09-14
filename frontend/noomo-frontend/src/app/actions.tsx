@@ -1,8 +1,11 @@
 // noomo - a llm predictions game
 // Copyright (C) 2026  skueee
 
+// actions page
+
 "use server";
 
+// Call to the backend to get the words for the game
 export async function getPredictions(input: string) {
   const isProduction =
     typeof process.env.NEXT_PUBLIC_VERCEL_ENV !== "undefined" &&

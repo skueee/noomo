@@ -1,6 +1,8 @@
 // noomo - a llm predictions game
 // Copyright (C) 2026  skueee
 
+// game page
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -84,6 +86,7 @@ export default function Game() {
     }
   }, [score, cluesCount, router, tries, words, startTime]);
 
+  // Check if the words are populated, and, if not, shows the login screen
   if (words.length < 2) {
     return (
       <div className="h-screen w-full flex flex-col items-center justify-center gap-5">

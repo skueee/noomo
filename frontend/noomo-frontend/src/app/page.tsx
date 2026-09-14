@@ -1,6 +1,8 @@
 // noomo - a llm predictions game
 // Copyright (C) 2026  skueee
 
+// index page
+
 "use client";
 
 import { useEffect, useState } from "react";

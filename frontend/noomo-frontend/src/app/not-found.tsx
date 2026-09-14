@@ -1,6 +1,8 @@
 // noomo - a llm predictions game
 // Copyright (C) 2026  skueee
 
+// 404 page
+
 import Link from "next/link";
 
 const possibleSentences = [
