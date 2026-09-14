@@ -157,10 +157,14 @@ type WordLineProps = {
 
 export function WordLine({ numero, word, found }: WordLineProps) {
   const textColor = found ? "text-green-600" : "--foreground";
-  const backgroundSelectionColor = found ? "selection:bg-green-600" : "selection:bg-foreground";
+  const backgroundSelectionColor = found
+    ? "selection:bg-green-600"
+    : "selection:bg-foreground";
 
   return (
-    <div className={`flex flex-line gap-[10px] ${textColor} ${backgroundSelectionColor}`}>
+    <div
+      className={`flex flex-line gap-[10px] ${textColor} ${backgroundSelectionColor}`}
+    >
       <a className="kalnia-title text-[32px] sm:text-[48px]">{numero}.</a>
       <a className="kalnia-title text-[32px] sm:text-[48px]">{word}</a>
     </div>
