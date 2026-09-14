@@ -82,6 +82,7 @@ export default function Home() {
 
               <button
                 type="submit"
+                aria-label="submit"
                 className="cursor-pointer mt-1 mx-auto inline-flex items-center justify-center gap-2 px-3 w-[70px] h-[70px] rounded-[15px] bg-foreground text-background hover:bg-opacity-90 transition-colors"
               >
                 <svg
