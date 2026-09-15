@@ -111,7 +111,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/skueee"
-            className="hover:underline"
+            className="hover:font-[541] underline"
           >
             skue
           </a>
