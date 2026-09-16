@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from . import db, model_script
+from . import dailychallenges, db, model_script
 
 
 # The request body for /predict
@@ -45,3 +45,8 @@ def generate_prediction(config: PredictionsConfig):
 @app.get("/top-sentences")
 def get_top_sentences(count: int):
     return db.get_top_sentences(count)
+
+
+@app.get("/daily-challenge")
+def get_daily_challenge():
+    return dailychallenges.get_challenge()

@@ -1,0 +1,7 @@
+[
+  {
+    "date": "2026-09-16",
+    "sentence": "Lorem Ipsum",
+    "words": [{"word":"is","prob":0.0038499441870953888,"index":1},{"word":"contains","prob":0.0034652377507882193,"index":2},{"word":"has","prob":0.003039962575712707,"index":3},{"word":"consists","prob":0.0030390081519726664,"index":4},{"word":"Generator","prob":0.002989491986227222,"index":5},{"word":"provides","prob":0.002945507912954781,"index":6},{"word":"refers","prob":0.0028900343750137836,"index":7},{"word":"comes","prob":0.002855332240869757,"index":8},{"word":"Generation","prob":0.0027743473765440285,"index":9},{"word":"generated","prob":0.0027050040444009937,"index":10}]
+  }
+]
