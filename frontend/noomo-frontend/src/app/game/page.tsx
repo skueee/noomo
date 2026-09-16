@@ -97,7 +97,7 @@ export default function Game() {
       setSentence(result.sentence);
     }
 
-    const gamemode = sessionStorage.getItem("gamemove");
+    const gamemode = sessionStorage.getItem("gamemode");
     if (gamemode == "classic") {
       getPreds();
     } else if (gamemode == "challenge") {
