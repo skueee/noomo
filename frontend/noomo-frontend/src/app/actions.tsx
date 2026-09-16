@@ -29,7 +29,7 @@ export async function getPredictions(input: string) {
 }
 
 // Call to get today's challenge
-export async function getChallenge(input: string) {
+export async function getDailyChallenge() {
   const response = await fetch(backend + "/daily-challenge", {
     cache: "no-store",
     method: "GET",
