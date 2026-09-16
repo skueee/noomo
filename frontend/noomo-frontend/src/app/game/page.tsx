@@ -18,7 +18,13 @@ type WordStructure = {
   index: number;
 };
 
-const inputPlaceholderSentences = ["Enter a word...", "Take a guess...", "Make a suppostition...", "Any idea ?", "Harder than you tought, uh ?"]
+const inputPlaceholderSentences = [
+  "Enter a word...",
+  "Take a guess...",
+  "Make a suppostition...",
+  "Any idea ?",
+  "Harder than you tought, uh ?",
+];
 
 export default function Game() {
   const router = useRouter();
@@ -31,7 +37,9 @@ export default function Game() {
   const [tries, setTries] = useState<number>(0);
   const [cluesCount, setCluesCount] = useState<number>(0);
   const [startTime, setStartTime] = useState<number>(0);
-  const [inputPlaceholder, setInputPlaceholder] = useState<string>("Enter a word, then press enter")
+  const [inputPlaceholder, setInputPlaceholder] = useState<string>(
+    "Enter a word, then press enter",
+  );
 
   const handleInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && input.trim()) {
@@ -42,7 +50,11 @@ export default function Game() {
         setWordsFound((prev) => [...prev, result.matchIndex]);
       }
       setInput("");
-      setInputPlaceholder(inputPlaceholderSentences[Math.floor(Math.random() * inputPlaceholderSentences.length)])
+      setInputPlaceholder(
+        inputPlaceholderSentences[
+          Math.floor(Math.random() * inputPlaceholderSentences.length)
+        ],
+      );
     }
   };
 

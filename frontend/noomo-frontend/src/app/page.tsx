@@ -100,7 +100,9 @@ export default function Home() {
               </button>
             </form>
             <div className="cursor-pointer challenge-rect flex items-center justify-center px-3 w-full max-w-[225px] h-[45px]">
-              <a className="kalnia-main text-[25px] text-background">Daily challenge</a>
+              <a className="kalnia-main text-[25px] text-background">
+                Daily challenge
+              </a>
             </div>
           </div>
         </div>
