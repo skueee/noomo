@@ -68,12 +68,9 @@ Changing the DB_PATH environment variable will change the file used for the data
 
 #### Linting
 
-Please execute these commands before your PR :
+Please execute this commands before your PR (in the virtual environment) :
 
-```
-uvs format
-```
-and
 ```
 uvs check
 ```
+It will fix and format your code, then show errors that need to be fixed manually
