@@ -99,7 +99,9 @@ export default function Home() {
                 </svg>
               </button>
             </form>
-            <p className="text-[22px]">{goodLuckSentence}</p>
+            <div className="cursor-pointer challenge-rect flex items-center justify-center px-3 w-full max-w-[225px] h-[45px]">
+              <a className="kalnia-main text-[25px] text-background">Daily challenge</a>
+            </div>
           </div>
         </div>
       </main>
@@ -115,6 +117,7 @@ export default function Home() {
           >
             skue
           </a>
+          &nbsp;- {goodLuckSentence}
         </p>
       </footer>
     </div>
