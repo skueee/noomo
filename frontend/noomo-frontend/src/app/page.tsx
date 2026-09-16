@@ -66,6 +66,7 @@ export default function Home() {
           <div className="flex flex-col items-center gap-3 max-w-md w-full p-0">
             <form
               action={() => {
+                sessionStorage.setItem("gamemode", "classic");
                 goToGame();
               }}
               className="play-rect flex flex-row w-full max-w-[520px] h-[92px] px-1"
@@ -99,11 +100,17 @@ export default function Home() {
                 </svg>
               </button>
             </form>
-            <div className="cursor-pointer challenge-rect flex items-center justify-center px-3 w-full max-w-[225px] h-[45px]">
+            <button
+              onClick={() => {
+                sessionStorage.setItem("gamemode", "challenge");
+                goToGame();
+              }}
+              className="cursor-pointer challenge-rect flex items-center justify-center px-3 w-full max-w-[225px] h-[45px]"
+            >
               <a className="kalnia-main text-[25px] text-background">
                 Daily challenge
               </a>
-            </div>
+            </button>
           </div>
         </div>
       </main>

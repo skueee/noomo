@@ -6,7 +6,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getPredictions } from "@/app/actions";
+import { getDailyChallenge, getPredictions } from "@/app/actions";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -89,11 +89,21 @@ export default function Game() {
         setWords(result);
         setSentence(storedSentence);
       }
-
-      setStartTime(Date.now());
     }
 
-    getPreds();
+    async function getChallenge() {
+      const result = await getDailyChallenge();
+      setWords(result.words);
+      setSentence(result.sentence);
+    }
+
+    const gamemode = sessionStorage.getItem("gamemove");
+    if (gamemode == "classic") {
+      getPreds();
+    } else if (gamemode == "challenge") {
+      getChallenge();
+    }
+    setStartTime(Date.now());
   }, []);
 
   useEffect(() => {
