@@ -4,9 +4,16 @@
 import os
 from pathlib import Path
 
-from . import model_download
+from . import dailychallenges, model_download
 
 
 def download():
     dir = Path(__file__).resolve().parent
     model_download.download(Path(os.path.join(dir, "model")))
+
+
+def populate_challenges():
+    file_in = input("Input : ")
+    file_out = input("Output : ")
+    dailychallenges.populate_challenges(file_in, file_out)
+    print("Done !")
