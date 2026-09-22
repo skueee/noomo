@@ -8,6 +8,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+// Sentences that will be shown randomly at the bottom of the page
 const possibleGoodLuckSentences = [
   "Good Luck !",
   "You can do it !",
@@ -20,6 +21,7 @@ export default function Home() {
   const [sentence, setSentence] = useState("");
   const [goodLuckSentence, setGoodLuckSentence] = useState<string>("");
 
+  // Set session storage and go to the game
   const goToGame = async () => {
     sessionStorage.setItem("sentence", sentence);
     router.push("/game");
@@ -27,6 +29,8 @@ export default function Home() {
 
   useEffect(() => {
     sessionStorage.clear();
+
+    // Set the random sentence in an effect to get no errors
     setGoodLuckSentence(
       possibleGoodLuckSentences[
         Math.floor(Math.random() * possibleGoodLuckSentences.length)

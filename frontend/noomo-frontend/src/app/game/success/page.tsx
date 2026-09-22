@@ -14,6 +14,7 @@ interface Word {
   index: number;
 }
 
+// sentences that will be shown randomly in the place of the input field (from the game)
 const possibleSuccessSentence = [
   "Good job !",
   "Well done !",
@@ -33,6 +34,7 @@ export default function SuccessPage() {
   const [successSentence, setSuccessSentence] = useState<string>("");
 
   useEffect(() => {
+    // Gets the stats from the sessionStorage
     const storedSentence = sessionStorage.getItem("sentence");
     const storedWords = sessionStorage.getItem("words");
     const storedTries = sessionStorage.getItem("tries");
@@ -59,6 +61,7 @@ export default function SuccessPage() {
       setDuration(Number(storedDuration));
     }
 
+    // Select a random sentence
     setSuccessSentence(
       possibleSuccessSentence[
         Math.floor(Math.random() * possibleSuccessSentence.length)
@@ -110,6 +113,7 @@ type StatsViewProps = {
   duration: number;
 };
 
+// The panel with the stats
 export function StatsView({ tries, clues, duration }: StatsViewProps) {
   const durationArray = getMinutesAndSeconds(duration);
   return (
@@ -134,6 +138,7 @@ type WordsViewProps = {
   words: Word[];
 };
 
+// The panel with the words
 export function WordsView({ words }: WordsViewProps) {
   return (
     <div className="flex flex-col items-start justify-center">

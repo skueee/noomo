@@ -18,6 +18,7 @@ type WordStructure = {
   index: number;
 };
 
+// Sentences that will be shown randomly in the input field
 const inputPlaceholderSentences = [
   "Enter a word...",
   "Take a guess...",
@@ -41,6 +42,7 @@ export default function Game() {
     "Enter a word, then press enter",
   );
 
+  // The function that will handle pressing enter
   const handleInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && input.trim()) {
       setTries(tries + 1);
@@ -58,6 +60,7 @@ export default function Game() {
     }
   };
 
+  // Check if it needs to show words on screen or keep them empty
   const getWordToDisplay = (index: number, word: string) => {
     if (wordsFound.includes(Number(index))) {
       return word;
@@ -107,6 +110,7 @@ export default function Game() {
   }, []);
 
   useEffect(() => {
+    // When winning, go to the win page :)
     if (score == 10) {
       goToResult(words, tries, cluesCount, router, startTime);
     }
