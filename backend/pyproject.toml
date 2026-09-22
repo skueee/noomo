@@ -11,10 +11,10 @@ authors = [
 ]
 requires-python = ">=3.14"
 dependencies = [
-    "accelerate>=1.14.0",
     "fastapi[standard]>=0.141.1",
+    "huggingface-hub>=1.29.0",
+    "pydantic>=2.13.5",
     "regex>=2026.9.3",
-    "ruff>=0.16.7",
     "torch>=2.14.0",
     "transformers>=5.16.1",
 ]
@@ -39,6 +39,8 @@ build-backend = "uv_build"
 [dependency-groups]
 dev = [
     "uv-script>=0.1.9",
+    "ruff>=0.16.7",
+    "deptry>=0.25.1",
 ]
 
 [[tool.uv.index]]
