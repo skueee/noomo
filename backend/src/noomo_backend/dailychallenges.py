@@ -1,3 +1,8 @@
+# noomo - a llm predictions game
+# Copyright (C) 2026  skueee
+
+# The script responsible for serving the challenges
+
 import datetime
 import json
 import os
@@ -9,6 +14,7 @@ challenges_path = os.getenv(
 )
 
 
+# Returns a challenge
 def get_challenge():
     with open(challenges_path) as f:
         data = json.load(f)
@@ -39,5 +45,6 @@ def populate_challenges(file_in, file_out):
         json.dump(out_data, f, ensure_ascii=False, indent=4)
 
 
+# For debug purposes
 if __name__ == "__main__":
     print(get_challenge())

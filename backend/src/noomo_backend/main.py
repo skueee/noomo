@@ -42,11 +42,15 @@ def generate_prediction(config: PredictionsConfig):
     )
 
 
+# Gets top sentences
+# Returns a list with each sentence
 @app.get("/top-sentences")
 def get_top_sentences(count: int):
     return db.get_top_sentences(count)
 
 
+# Gets today's daily challenge
+# Returns a dict with the data, sentence, and words in the same format as /predict
 @app.get("/daily-challenge")
 def get_daily_challenge():
     return dailychallenges.get_challenge()

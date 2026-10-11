@@ -14,6 +14,7 @@ db_path = os.getenv(
 )
 
 
+# Creates the connection to sqlite and closes it when the request is finished
 @contextmanager
 def create_connection(path=db_path):
     connection = None
@@ -29,6 +30,7 @@ def create_connection(path=db_path):
         connection.close()
 
 
+# Creates the db if needed and cleans it
 def initdb(path=db_path):
     with create_connection(path) as connection:
         create_top_sentences_table = """
@@ -46,6 +48,7 @@ def initdb(path=db_path):
         cleanup_sentences()
 
 
+# Adds a sentence to the top sentences
 def insert_sentence(sentence):
     with create_connection() as connection:
         request = """
@@ -61,6 +64,7 @@ def insert_sentence(sentence):
         connection.commit()
 
 
+# Search a sentence in the top sentences
 def search_for_sentence(sentence):
     with create_connection() as connection:
         cursor = connection.cursor()
@@ -72,6 +76,7 @@ def search_for_sentence(sentence):
         return bool(cursor.fetchone()[0])
 
 
+# Deletes old sentences from to top sentences
 def cleanup_sentences():
     with create_connection() as connection:
         cleanup_query = """
@@ -92,6 +97,7 @@ def cleanup_sentences():
         print(f"Deleted {cursor.rowcount} inactive sentences.")
 
 
+# Gets the top sentences
 def get_top_sentences(elements_count):
     with create_connection() as connection:
         query = """
