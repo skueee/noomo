@@ -19,7 +19,7 @@ export default function NotFound() {
       <a className="kalnia-title text-[32px]">
         {
           possibleSentences[
-            Math.floor(Math.random() * possibleSentences.length)
+            Math.floor(Math.random() * possibleSentences.length) // eslint-disable-line react-hooks/purity
           ]
         }
       </a>

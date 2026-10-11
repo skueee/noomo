@@ -69,6 +69,7 @@ export default function Game() {
     }
   };
 
+  // Helper to see if a word index is in the found list
   const isFound = (index: number) => {
     if (wordsFound.includes(index)) {
       return true;
@@ -77,6 +78,7 @@ export default function Game() {
     }
   };
 
+  // Helper to add to the clue if there is clues left
   const getAClue = () => {
     if (cluesCount != 5) {
       setCluesCount(cluesCount + 1);
@@ -180,12 +182,14 @@ export default function Game() {
   );
 }
 
+// WordLine propreties
 type WordLineProps = {
   numero: number;
   word: string;
   found: boolean;
 };
 
+// COmponent used to display words
 export function WordLine({ numero, word, found }: WordLineProps) {
   const textColor = found ? "text-green-600" : "--foreground";
   const backgroundSelectionColor = found
@@ -202,10 +206,11 @@ export function WordLine({ numero, word, found }: WordLineProps) {
   );
 }
 
+// Function to check if an input word is in the words to find
 function checkWord(
-  input: string,
-  words: WordStructure[],
-  wordsFound: number[],
+  input: string, // the word to check
+  words: WordStructure[], // the words to find
+  wordsFound: number[], // the words already found
 ) {
   let match: boolean = false;
   let matchIndex: number = 0;
@@ -213,9 +218,10 @@ function checkWord(
   for (let i = 0; i < words.length && !match; i++) {
     const wordToCheck = words[i].word;
     if (
+      // Checks if the input is equal to the current word in the words array
       input.localeCompare(wordToCheck, undefined, { sensitivity: "base" }) ===
         0 &&
-      !wordsFound.includes(words[i].index)
+      !wordsFound.includes(words[i].index) // check if the word is not already found
     ) {
       match = true;
       matchIndex = words[i].index;
@@ -225,6 +231,7 @@ function checkWord(
   return { match, matchIndex };
 }
 
+// gets a placeholder with a clue if needed
 function getWordPlaceholder(word: string, clues: number) {
   let toReveal: number;
   if (word.length > clues) {
@@ -236,6 +243,7 @@ function getWordPlaceholder(word: string, clues: number) {
   return word.substring(0, toReveal) + "•".repeat(word.length - toReveal);
 }
 
+// Goes to the success page
 function goToResult(
   words: WordStructure[],
   tries: number,
@@ -247,6 +255,7 @@ function goToResult(
   router.push("/game/success");
 }
 
+// Saves the stats to the local storage for the success page
 function saveToStorage(
   words: WordStructure[],
   tries: number,
