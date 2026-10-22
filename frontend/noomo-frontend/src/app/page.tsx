@@ -102,18 +102,7 @@ export default function Home() {
                 aria-label="submit"
                 className="cursor-pointer mt-1 mx-auto inline-flex items-center justify-center gap-2 px-3 w-[70px] h-[70px] rounded-[15px] bg-foreground text-background hover:bg-opacity-90 transition-colors"
               >
-                <svg
-                  width="70"
-                  height="70"
-                  viewBox="0 0 44 31"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M1.25 15.7541H42.75M24.75 29.7541L42.75 15.7541L24.75 1.75412" />
-                </svg>
+                <ArrowRightIcon size={52} />
               </button>
             </form>
 
