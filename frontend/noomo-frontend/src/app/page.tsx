@@ -7,7 +7,10 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { SlidersHorizontalIcon } from "@phosphor-icons/react/dist/ssr";
+import {
+  SlidersHorizontalIcon,
+  ArrowRightIcon,
+} from "@phosphor-icons/react/dist/ssr";
 
 // Sentences that will be shown randomly at the bottom of the page
 const possibleGoodLuckSentences = [
@@ -22,8 +25,8 @@ export default function Home() {
   const [sentence, setSentence] = useState("");
   const [goodLuckSentence, setGoodLuckSentence] = useState<string>("");
   const [isSettingsPopupOpen, setIsSettingsPopupOpen] = useState(false);
-  const [cluesCount, setCluesCount] = useState<string>("5")
-  const [wordsCount, setWordsCount] = useState<string>("10")
+  const [cluesCount, setCluesCount] = useState<string>("5");
+  const [wordsCount, setWordsCount] = useState<string>("10");
 
   // Set session storage and go to the game
   const goToGame = async () => {
@@ -107,17 +110,41 @@ export default function Home() {
             </form>
 
             {isSettingsPopupOpen && (
-              <div onClick={() => setIsSettingsPopupOpen(false)} className="fixed inset-0 z-50 flex items-center justify-center bg-black/5 backdrop-blur-sm">
-                <div className="bg-background border-foreground p-6 rounded-2xl shadow-xl max-w-sm w-full mx-4 border" onClick={(e) => e.stopPropagation()}>
-                  <h3 className="kalnia-title text-2xl mb-2 text-foreground">Game Settings</h3>
+              <div
+                onClick={() => setIsSettingsPopupOpen(false)}
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black/5 backdrop-blur-sm"
+              >
+                <div
+                  className="bg-background border-foreground p-6 rounded-2xl shadow-xl max-w-sm w-full mx-4 border"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <h3 className="kalnia-title text-2xl mb-2 text-foreground">
+                    Game Settings
+                  </h3>
                   <div className="flex flex-col w-full gap-4">
                     <div className="flex flex-col w-full gap-2">
                       <p className="kalnia-bold text-[18px]">Words count</p>
-                      <ParamsOptionsSelect options={[{id:"5", label:"5"},{id:"10", label:"10"},{id:"20", label:"20"}]} value={wordsCount} onChange={(id) => setWordsCount(id)}/>
+                      <ParamsOptionsSelect
+                        options={[
+                          { id: "5", label: "5" },
+                          { id: "10", label: "10" },
+                          { id: "20", label: "20" },
+                        ]}
+                        value={wordsCount}
+                        onChange={(id) => setWordsCount(id)}
+                      />
                     </div>
                     <div className="flex flex-col w-full gap-2">
                       <p className="kalnia-bold text-[18px]">Clues count</p>
-                      <ParamsOptionsSelect options={[{id:"3", label:"3"},{id:"5", label:"5"},{id:"10", label:"10"}]} value={cluesCount} onChange={(id) => setCluesCount(id)}/>
+                      <ParamsOptionsSelect
+                        options={[
+                          { id: "3", label: "3" },
+                          { id: "5", label: "5" },
+                          { id: "10", label: "10" },
+                        ]}
+                        value={cluesCount}
+                        onChange={(id) => setCluesCount(id)}
+                      />
                     </div>
                   </div>
                 </div>
@@ -157,7 +184,6 @@ export default function Home() {
   );
 }
 
-
 interface ParamsOptionsSelectPropsOption {
   id: string;
   label: string;
@@ -169,7 +195,11 @@ interface ParamsOptionsSelectProps {
   onChange: (id: string) => void;
 }
 
-export function ParamsOptionsSelect({ options, value, onChange, }: ParamsOptionsSelectProps) {
+export function ParamsOptionsSelect({
+  options,
+  value,
+  onChange,
+}: ParamsOptionsSelectProps) {
   return (
     <div className="flex flex-row gap-2 w-full">
       {options.map((option) => {
@@ -180,15 +210,13 @@ export function ParamsOptionsSelect({ options, value, onChange, }: ParamsOptions
             type="button"
             onClick={() => onChange(option.id)}
             className={`flex-1 py-2 rounded-xl font-semibold transition-all ${
-              isActive
-              ? "bg-foreground text-background"
-              : "outline-1"
-              }`}
+              isActive ? "bg-foreground text-background" : "outline-1"
+            }`}
           >
             {option.label}
           </button>
         );
       })}
     </div>
-  )
+  );
 }
