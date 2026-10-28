@@ -41,6 +41,7 @@ export default function Game() {
   const [inputPlaceholder, setInputPlaceholder] = useState<string>(
     "Enter a word, then press enter",
   );
+  const [maxClues, setMaxClues] = useState<number>(0)
 
   // The function that will handle pressing enter
   const handleInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -80,17 +81,23 @@ export default function Game() {
 
   // Helper to add to the clue if there is clues left
   const getAClue = () => {
-    if (cluesCount != 5) {
+    if (cluesCount != maxClues) {
       setCluesCount(cluesCount + 1);
     }
   };
 
   useEffect(() => {
-    async function getPreds() {
+    async function getPredsAndStorage() {
       const storedSentence = sessionStorage.getItem("sentence");
+      const storedCluesCount = sessionStorage.getItem("cluesCount");
+      const storedWordsCount = sessionStorage.getItem("wordsCount");
 
-      if (storedSentence) {
-        const result = await getPredictions(storedSentence);
+      if (storedCluesCount) {
+        setMaxClues(Number(storedCluesCount))
+      }
+
+      if (storedSentence && storedWordsCount) {
+        const result = await getPredictions(storedSentence, Number(storedWordsCount));
         setWords(result);
         setSentence(storedSentence);
       }
@@ -104,7 +111,7 @@ export default function Game() {
 
     const gamemode = sessionStorage.getItem("gamemode");
     if (gamemode == "classic") {
-      getPreds();
+      getPredsAndStorage();
     } else if (gamemode == "challenge") {
       getChallenge();
     }
@@ -144,7 +151,7 @@ export default function Game() {
           onClick={getAClue}
           className="cursor-pointer hover:underline hover:rounded-[10px] kalnia-main text-[20px] sm:text-[32px] border-[2px] px-[10px] py-[2px] rounded-[20px] justify-self-end"
         >
-          Clue {cluesCount}/5
+          Clue {cluesCount}/{maxClues}
         </button>
       </header>
 

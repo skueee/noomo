@@ -9,7 +9,7 @@
 const backend = "https://api.skue.hackclub.app/";
 
 // Call to the backend to get the words for the game
-export async function getPredictions(input: string) {
+export async function getPredictions(input: string, wordsCount: number = 10) {
   const isProduction =
     typeof process.env.NEXT_PUBLIC_VERCEL_ENV !== "undefined" &&
     process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
@@ -19,7 +19,7 @@ export async function getPredictions(input: string) {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({
-      words_count: 10,
+      words_count: wordsCount,
       sentence: input,
       prod: isProduction,
     }),

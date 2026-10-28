@@ -31,6 +31,8 @@ export default function Home() {
   // Set session storage and go to the game
   const goToGame = async () => {
     sessionStorage.setItem("sentence", sentence);
+    sessionStorage.setItem("cluesCount", cluesCount);
+    sessionStorage.setItem("wordsCount", wordsCount);
     router.push("/game");
   };
 
