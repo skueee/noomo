@@ -120,7 +120,7 @@ export default function Game() {
 
   useEffect(() => {
     // When winning, go to the win page :)
-    if (score == 10) {
+    if (words.length > 0 && score == words.length) {
       goToResult(words, tries, cluesCount, router, startTime);
     }
   }, [score, cluesCount, router, tries, words, startTime]);
