@@ -171,8 +171,11 @@ export default function Game() {
             <a className="kalnia-main text-[48px]">{score}/10</a>
           </div>
 
-          <div className="w-full h-full items-center justify-center flex md:px-150">
-            <div className="sm:gap-x-100 lg:gap-x-150 gap-y-2 grid grid-cols-1 md:grid-flow-col md:grid-rows-5 items-center justify-center">
+          <div className="w-full h-full items-center justify-center flex p-6 overflow-hidden">
+            <div
+              className="grid grid-cols-1 md:grid-flow-col items-center justify-center gap-x-12 gap-y-2
+                             xl:grid-rows-[repeat(5,_minmax(0,_auto))]
+                             grid-rows-[repeat(10,_minmax(0,_auto))]">
               {words.map((word) => (
                 <WordLine
                   key={word.index}
