@@ -6,6 +6,8 @@ If you have any suggestion, please open an issue or contact @skueee on Slack (if
 - [ ] Top sentences
 - [x] More obvious for the first game ?
 - [x] Choosing words count
-- [ ] Multi-token words
-- [ ] Other game modes (multi sentences, wordle-like ?)
 - [ ] More fun ? (animations, audio...)
+- [ ] Better support for multiple languages 
+- [ ] Big check for bug thing
+- [ ] Refactor codebase
+- [ ] Predict an entire sentence (not priority)
