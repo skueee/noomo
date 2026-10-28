@@ -41,7 +41,7 @@ export default function Game() {
   const [inputPlaceholder, setInputPlaceholder] = useState<string>(
     "Enter a word, then press enter",
   );
-  const [maxClues, setMaxClues] = useState<number>(0)
+  const [maxClues, setMaxClues] = useState<number>(0);
 
   // The function that will handle pressing enter
   const handleInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -93,11 +93,14 @@ export default function Game() {
       const storedWordsCount = sessionStorage.getItem("wordsCount");
 
       if (storedCluesCount) {
-        setMaxClues(Number(storedCluesCount))
+        setMaxClues(Number(storedCluesCount));
       }
 
       if (storedSentence && storedWordsCount) {
-        const result = await getPredictions(storedSentence, Number(storedWordsCount));
+        const result = await getPredictions(
+          storedSentence,
+          Number(storedWordsCount),
+        );
         setWords(result);
         setSentence(storedSentence);
       }
@@ -175,7 +178,8 @@ export default function Game() {
             <div
               className="grid grid-cols-1 md:grid-flow-col items-center justify-center gap-x-12 gap-y-2
                              xl:grid-rows-[repeat(5,_minmax(0,_auto))]
-                             grid-rows-[repeat(10,_minmax(0,_auto))]">
+                             grid-rows-[repeat(10,_minmax(0,_auto))]"
+            >
               {words.map((word) => (
                 <WordLine
                   key={word.index}

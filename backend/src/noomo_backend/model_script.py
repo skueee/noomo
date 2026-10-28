@@ -18,7 +18,7 @@ def create_length_bias_vector(tokenizer, device, vocab_size):
 
     for token, token_id in tokenizer.get_vocab().items():
         if token_id < vocab_size:
-            clean_token = token.lstrip("Ġ ##").strip() # noqa: B005
+            clean_token = token.lstrip("Ġ ##").strip()  # noqa: B005
 
             if latin_pattern.match(clean_token):
                 length_bias[token_id] = math.log1p(len(clean_token))
