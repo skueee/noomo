@@ -5,7 +5,7 @@ If you have any suggestion, please open an issue or contact @skueee on Slack (if
 - [x] Daily challenge !
 - [ ] Top sentences
 - [x] More obvious for the first game ?
-- [ ] Choosing words count
+- [x] Choosing words count
 - [ ] Multi-token words
 - [ ] Other game modes (multi sentences, wordle-like ?)
 - [ ] More fun ? (animations, audio...)
