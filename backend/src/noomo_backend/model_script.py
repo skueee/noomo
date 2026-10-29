@@ -4,11 +4,51 @@
 import gc
 import math
 import os
+from collections import Counter
 from pathlib import Path
 
 import regex as re
 import torch
 import transformers
+
+
+def check_language(text, threshold=0.10):
+    _SCRIPT_RE = re.compile(
+        r"(?P<Hiragana>\p{Hiragana})|"
+        r"(?P<Katakana>\p{Katakana})|"
+        r"(?P<Han>\p{Han})|"
+        r"(?P<Hangul>\p{Hangul})|"
+        r"(?P<Latin>\p{Latin})|"
+        r"(?P<Cyrillic>\p{Cyrillic})|"
+        r"(?P<Greek>\p{Greek})|"
+        r"(?P<Arabic>\p{Arabic})|"
+        r"(?P<Hebrew>\p{Hebrew})"
+    )
+
+    GROUP = {
+        "Hiragana": "Japanese",
+        "Katakana": "Japanese",
+        "Han": "Japanese",
+        "Hangul": "Korean",
+        "Latin": "Latin",
+        "Cyrillic": "Cyrillic",
+        "Greek": "Greek",
+        "Arabic": "Arabic",
+        "Hebrew": "Hebrew",
+    }
+
+    counts = Counter()
+    for m in _SCRIPT_RE.finditer(text):
+        script_name = m.lastgroup
+        if script_name:
+            counts[GROUP.get(script_name, script_name)] += 1
+
+    if not counts:
+        return {"Latin"}
+
+    total = sum(counts.values())
+    allowed = {g for g, n in counts.items() if n / total >= threshold}
+    return allowed or {max(counts, key=counts.get)}
 
 
 # Push the model towards longer words
