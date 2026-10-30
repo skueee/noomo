@@ -160,9 +160,9 @@ export default function Home() {
               }}
               className="cursor-pointer challenge-rect flex items-center justify-center px-3 w-full max-w-[225px] h-[45px]"
             >
-              <a className="kalnia-main text-[25px] text-background">
+              <span className="kalnia-main text-[25px] text-background">
                 Daily challenge
-              </a>
+              </span>
             </button>
           </div>
         </div>

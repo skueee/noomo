@@ -133,7 +133,7 @@ export default function Game() {
     return (
       <div className="h-screen w-full flex flex-col items-center justify-center gap-5">
         <div className="w-24 h-24 border-[7px] border-t-background rounded-full animate-spin" />
-        <a className="kalnia-title text-[48px]">Loading</a>
+        <span className="kalnia-title text-[48px]">Loading</span>
       </div>
     );
   }
@@ -147,9 +147,9 @@ export default function Game() {
         >
           Noomo
         </Link>
-        <a className="kalnia-main text-[28px] sm:text-[48px] justify-self-start md:justify-self-center text-center">
+        <span className="kalnia-main text-[28px] sm:text-[48px] justify-self-start md:justify-self-center text-center">
           {sentence}
-        </a>
+        </span>
         <button
           onClick={getAClue}
           className="cursor-pointer hover:underline hover:rounded-[10px] kalnia-main text-[20px] sm:text-[32px] border-[2px] px-[10px] py-[2px] rounded-[20px] justify-self-end"
@@ -171,7 +171,7 @@ export default function Game() {
               autoFocus
               className="kalnia-main text-[32px] w-full h-full py-2 px-3 rounded-lg focus:outline-none text-foreground -mt-1"
             />
-            <a className="kalnia-main text-[48px]">{score}/{words.length}</a>
+            <span className="kalnia-main text-[48px]">{score}/{words.length}</span>
           </div>
 
           <div className="w-full h-full items-center justify-center flex p-6 overflow-hidden">
@@ -214,8 +214,8 @@ export function WordLine({ numero, word, found }: WordLineProps) {
     <div
       className={`flex flex-line gap-[10px] ${textColor} ${backgroundSelectionColor}`}
     >
-      <a className="kalnia-title text-[32px] sm:text-[48px]">{numero}.</a>
-      <a className="kalnia-title text-[32px] sm:text-[48px]">{word}</a>
+      <span className="kalnia-title text-[32px] sm:text-[48px]">{numero}.</span>
+      <span className="kalnia-title text-[32px] sm:text-[48px]">{word}</span>
     </div>
   );
 }

@@ -78,18 +78,18 @@ export default function SuccessPage() {
         >
           Noomo
         </Link>
-        <a className="kalnia-main text-[48px] justify-self-end md:justify-self-center text-center">
+        <span className="kalnia-main text-[48px] justify-self-end md:justify-self-center text-center">
           {sentence}
-        </a>
+        </span>
       </header>
 
       <main className="items-center justify-center px-[50px] pb-[40px] w-full flex flex-1">
         <div className="h-full rounded-[20px] flex flex-col items-center w-full border-[5px]">
           <div className="w-full rounded-b-[10px] border-b-[3px] px-[30px] h-[120px] items-center justify-between flex">
-            <a className="kalnia-title text-[40px] md:text-[48px] text-green-600 selection:bg-green-600">
+            <span className="kalnia-title text-[40px] md:text-[48px] text-green-600 selection:bg-green-600">
               {successSentence}
-            </a>
-            <a className="kalnia-main text-[40px] md:text-[48px]">{words.length}/{words.length}</a>
+            </span>
+            <span className="kalnia-main text-[40px] md:text-[48px]">{words.length}/{words.length}</span>
           </div>
 
           <div className="items-center justify-center flex flex-row flex-1 gap-10">
@@ -118,18 +118,18 @@ export function StatsView({ tries, clues, duration }: StatsViewProps) {
   const durationArray = getMinutesAndSeconds(duration);
   return (
     <div className="flex flex-col items-end justify-center">
-      <a className="kalnia-title text-[36px] sm:text-[40px] md:text-[48px]">
+      <h2 className="kalnia-title text-[36px] sm:text-[40px] md:text-[48px]">
         Stats
-      </a>
-      <a className="kalnia-main text-[24px] sm:text-[28px] md:text-[32px]">
+      </h2>
+      <span className="kalnia-main text-[24px] sm:text-[28px] md:text-[32px]">
         {tries} Tries
-      </a>
-      <a className="kalnia-main text-[24px] sm:text-[28px] md:text-[32px]">
+      </span>
+      <span className="kalnia-main text-[24px] sm:text-[28px] md:text-[32px]">
         {clues} Clues
-      </a>
-      <a className="kalnia-main text-[24px] sm:text-[28px] md:text-[32px]">
+      </span>
+      <span className="kalnia-main text-[24px] sm:text-[28px] md:text-[32px]">
         {durationArray.minutesStr}:{durationArray.secondsStr}
-      </a>
+      </span>
     </div>
   );
 }
@@ -142,16 +142,16 @@ type WordsViewProps = {
 export function WordsView({ words }: WordsViewProps) {
   return (
     <div className="flex flex-col items-start justify-center">
-      <a className="kalnia-title text-[36px] text-[40px] md:text-[48px]">
+      <h2 className="kalnia-title text-[36px] text-[40px] md:text-[48px]">
         Words
-      </a>
+      </h2>
       {words.map((word) => (
-        <a
+        <span
           key={word.index}
           className="kalnia-main text-[24px] sm:text-[28px] md:text-[32px]"
         >
           {word.index}. {word.word}
-        </a>
+        </span>
       ))}
     </div>
   );
