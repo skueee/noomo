@@ -97,13 +97,16 @@ export default function Game() {
       }
 
       if (storedSentence && storedWordsCount) {
-        const result = await getPredictions(
+        const [result, predIsOk] = await getPredictions(
           storedSentence,
           Number(storedWordsCount),
         );
-        setWords(result);
-        setSentence(storedSentence);
-      }
+        if (predIsOk) {
+          setWords(result);
+          setSentence(storedSentence);
+        } else {
+          router.push("/gamefailure")
+        }
     }
 
     async function getChallenge() {
@@ -128,7 +131,7 @@ export default function Game() {
     }
   }, [score, cluesCount, router, tries, words, startTime]);
 
-  // Check if the words are populated, and, if not, shows the login screen
+  // Check if the words are populated, and, if not, shows the loading screen
   if (words.length < 2) {
     return (
       <div className="h-screen w-full flex flex-col items-center justify-center gap-5">

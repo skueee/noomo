@@ -23,7 +23,7 @@ export async function getPredictions(input: string, wordsCount: number = 10) {
     }),
   });
   const json = await response.json();
-  return json;
+  return [json, response.ok] as const;
 }
 
 // Call to get today's challenge
