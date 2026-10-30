@@ -22,12 +22,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create and Push Git Tag
+        env:
+          RAW_TITLE: ${{ github.event.pull_request.title }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          RAW_TITLE="${{ github.event.pull_request.title }}"
-          TAG_NAME=$(echo -n "$RAW_TITLE" | tr -c 'a-zA-Z0-9._-' '_')
+          TAG_NAME=$(printf '%s' "$RAW_TITLE" | tr -c 'a-zA-Z0-9._-' '_')
 
           git tag "$TAG_NAME"
           git push origin "$TAG_NAME"

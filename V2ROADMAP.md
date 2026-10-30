@@ -8,7 +8,7 @@ If you have any suggestion, please open an issue or contact @skueee on Slack (if
 - [x] Choosing words count
 - [ ] More fun ? (animations, audio...)
 - [X] Better support for multiple languages 
-- [ ] Big check for bug thing
+- [X] Big check for bug thing
 - [ ] Refactor codebase
 - [ ] Disallow multiple executions of predict ?
 - [ ] Better loading in frontend (timeout so it does not load indefinitely if crash)
