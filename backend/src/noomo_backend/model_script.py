@@ -83,10 +83,7 @@ def load_model():
 
 # Prediction thing
 def predict(model, tokenizer, length_bias, text, words_count, temperature=5, alpha=2):
-    if text[:-1] == " ":
-        clean_text = text
-    else:
-        clean_text = text + " "
+    clean_text = text if text.endswith(" ") else text + " "
 
     inputs = tokenizer(clean_text, return_tensors="pt").to(model.device)
 
