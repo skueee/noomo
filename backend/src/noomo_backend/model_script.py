@@ -119,6 +119,21 @@ def predict(model, tokenizer, length_bias, text, words_count, temperature=5, alp
         prob = top_probs[i].item() * 100
         candidates.append({"word": token_text, "prob": prob})
 
+    # ALready compute the right languages because optimizatiooon
+    patterns = {
+        "japanese": r"^[\p{Hiragana}\p{Katakana}\p{Han}]+$",
+        "korean": r"^\p{Hangul}+$",
+        "latin": r"^\p{Script=Latin}+$",
+        "cyrillic": r"^\p{Cyrillic}+$",
+        "greek": r"^\p{Greek}+$",
+        "arabic": r"^\p{Arabic}+$",
+        "hebrew": r"^\p{Hebrew}+$",
+    }
+    languages = check_language(text)
+    language_patterns = []
+    for i in languages:
+        language_patterns.append(re.compile(patterns[i.lower()]))
+
     # Eliminates bad candidates
     response = []
     words = []
@@ -138,20 +153,9 @@ def predict(model, tokenizer, length_bias, text, words_count, temperature=5, alp
                 choose = False
 
         # Check if the word is in the right language
-        patterns = {
-            "japanese": r"^[\p{Hiragana}\p{Katakana}\p{Han}]+$",
-            "korean": r"^\p{Hangul}+$",
-            "latin": r"^\p{Script=Latin}+$",
-            "cyrillic": r"^\p{Cyrillic}+$",
-            "greek": r"^\p{Greek}+$",
-            "arabic": r"^\p{Arabic}+$",
-            "hebrew": r"^\p{Hebrew}+$",
-        }
-        languages = check_language(text)
         language_good = False
-        for j in languages:
-            language_pattern = re.compile(patterns[j.lower()])
-            if language_pattern.match(curr_word):
+        for j in language_patterns:
+            if j.match(curr_word):
                 language_good = True
                 break
         if not language_good:
