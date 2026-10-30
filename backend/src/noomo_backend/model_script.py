@@ -164,7 +164,8 @@ def predict(model, tokenizer, length_bias, text, words_count, temperature=5, alp
             choose = False
 
         # Check if the word is minimum 3 characters
-        if len(curr_word) < 3:
+        min_char = 1 if "japanese" in languages or "korean" in languages else 3
+        if len(curr_word) < min_char:
             choose = False
 
         if choose:
