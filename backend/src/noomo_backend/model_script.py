@@ -134,6 +134,9 @@ def predict(model, tokenizer, length_bias, text, words_count, temperature=5, alp
     for i in languages:
         language_patterns.append(re.compile(patterns[i.lower()]))
 
+    # Already define regex patterns because of optimization
+    _RE_CASE = re.compile(r"\s[A-Za-z0-9]+", re.IGNORECASE)
+
     # Eliminates bad candidates
     response = []
     words = []
@@ -141,8 +144,7 @@ def predict(model, tokenizer, length_bias, text, words_count, temperature=5, alp
         choose = True
 
         # Delete space at the start of a word (if any)
-        pattern = re.compile(r"\s[A-Za-z0-9]+", re.IGNORECASE)
-        if pattern.match(i["word"]):
+        if _RE_CASE.match(i["word"]):
             curr_word = i["word"][1:]
         else:
             curr_word = i["word"]
