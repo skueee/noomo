@@ -9,11 +9,11 @@ A game where you need to guess words that an LLM generates
 
 ![](assets/screenshot.png)
 
-### **[Website](https://noomo-skue.vercel.app/)**
+### **[Website](http://noomo.dino.icu/)**
 
 ## How to play ?
 
-1. Open the site : [https://noomo-skue.vercel.app/](https://noomo-skue.vercel.app/)
+1. Open the site : [http://noomo.dino.icu/](http://noomo.dino.icu/)
 2. Enter a sentence, click on the button
 3. Enjoy !
 
@@ -119,6 +119,16 @@ The model is packed into the Dockerimage to have shorter start time.
 
 ---
 
+## AI Usage ?
+
+A bit of AI was used when I couldn't understand something (because of my English level, or my technical skills), for research (finding tools, libraries, when a simple google research is not enough), or to help me with some "advanced" things I didn't knew about (for example, some git commands that I didn't knew how to use or errors solving in the ML part).
+
+I never straight up pasted code from AI if it was not a redundant task. I used AI as a tool to learn, then I wrote myself my own code based on that or read the source provided if any and I needed more infos. 
+
+I used AI for redundant tasks too, like debugging the codebase (code analysis) or just to rewrite some parts (replace something that is present a lot in the codebase and needs to be changed everywhere)
+
+---
+
 ## Credits
 
 ### Backend
@@ -132,10 +142,16 @@ The model is packed into the Dockerimage to have shorter start time.
 
 **uv-script, for the script management :** https://pypi.org/project/uv-script/
 
+**Server provided by [Hackclub Nest](https://hackclub.app/), thanks !**
+
 ### Frontend
 
-**NextJS :** https://nextjs.org/
+**NextJS :** [https://nextjs.org/](https://nextjs.org/)
 
-**TailwindCSS :** https://tailwindcss.com/
+**TailwindCSS :** [https://tailwindcss.com/](https://tailwindcss.com/)
 
-**PNPM :** https://pnpm.io/fr/
+**PNPM :** [https://pnpm.io/fr/](https://pnpm.io/fr/)
+
+**Vercel :** [https://vercel.com/](https://vercel.com/)
+
+**Domain name provided by [Hackclub DNS](https://dns.hackclub.com/), thank you !**

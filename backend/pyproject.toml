@@ -11,10 +11,11 @@ authors = [
 ]
 requires-python = ">=3.14"
 dependencies = [
-    "accelerate>=1.14.0",
+    "accelerate>=1.15.0",
     "fastapi[standard]>=0.141.1",
+    "huggingface-hub>=1.29.0",
+    "pydantic>=2.13.5",
     "regex>=2026.9.3",
-    "ruff>=0.16.7",
     "torch>=2.14.0",
     "transformers>=5.16.1",
 ]
@@ -28,7 +29,9 @@ server = "uv run fastapi run src/noomo_backend/main.py --port 8001 --host 0.0.0.
 docker-build = "docker build -t ghcr.io/skueee/noomo:latest ."
 docker-push = "docker push ghcr.io/skueee/noomo:latest"
 format = "uv run ruff format"
-check = "uv run ruff check"
+lint = "uv run ruff check"
+fix = "uv run ruff check --fix"
+checks = ["fix", "format", "lint"]
 
 [build-system]
 requires = ["uv_build>=0.12.8,<0.13.0"]
@@ -37,6 +40,8 @@ build-backend = "uv_build"
 [dependency-groups]
 dev = [
     "uv-script>=0.1.9",
+    "ruff>=0.16.7",
+    "deptry>=0.25.1",
 ]
 
 [[tool.uv.index]]

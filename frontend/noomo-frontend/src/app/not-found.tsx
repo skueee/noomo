@@ -1,6 +1,8 @@
 // noomo - a llm predictions game
 // Copyright (C) 2026  skueee
 
+// 404 page
+
 import Link from "next/link";
 
 const possibleSentences = [
@@ -14,13 +16,13 @@ const possibleSentences = [
 export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-full h-full gap-3">
-      <a className="kalnia-title text-[32px]">
+      <h2 className="kalnia-title text-[32px]">
         {
           possibleSentences[
-            Math.floor(Math.random() * possibleSentences.length)
+            Math.floor(Math.random() * possibleSentences.length) // eslint-disable-line react-hooks/purity
           ]
         }
-      </a>
+      </h2>
       <Link href={{ pathname: "/" }}>
         <button className="cursor-pointer items-center justify-center px-5 py-2 rounded-[20px] bg-foreground text-background kalnia-main text-[20px]">
           Back to home

@@ -20,3 +20,11 @@ noomo - a llm predictions game
 Copyright (C) 2026  skueee
 ```
 Don't forget to comment it using the syntax of the programming language the file is being written with
+
+## Using AI
+
+Using AI to help you understand something is okay, but please use AI as a tool to learn and not to write everything on your behalf.
+
+It is recommended to tell if AI was used.
+
+Please do not write issues or PR with AI. It's not a big deal if your English is not perfect. Mine is not either.

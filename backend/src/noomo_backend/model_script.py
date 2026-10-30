@@ -4,6 +4,7 @@
 import gc
 import math
 import os
+from collections import Counter
 from pathlib import Path
 
 import regex as re
@@ -11,17 +12,53 @@ import torch
 import transformers
 
 
+def check_language(text, threshold=0.10):
+    _SCRIPT_RE = re.compile(
+        r"(?P<Hiragana>\p{Hiragana})|"
+        r"(?P<Katakana>\p{Katakana})|"
+        r"(?P<Han>\p{Han})|"
+        r"(?P<Hangul>\p{Hangul})|"
+        r"(?P<Latin>\p{Latin})|"
+        r"(?P<Cyrillic>\p{Cyrillic})|"
+        r"(?P<Greek>\p{Greek})|"
+        r"(?P<Arabic>\p{Arabic})|"
+        r"(?P<Hebrew>\p{Hebrew})"
+    )
+
+    GROUP = {
+        "Hiragana": "Japanese",
+        "Katakana": "Japanese",
+        "Han": "Japanese",
+        "Hangul": "Korean",
+        "Latin": "Latin",
+        "Cyrillic": "Cyrillic",
+        "Greek": "Greek",
+        "Arabic": "Arabic",
+        "Hebrew": "Hebrew",
+    }
+
+    counts = Counter()
+    for m in _SCRIPT_RE.finditer(text):
+        script_name = m.lastgroup
+        if script_name:
+            counts[GROUP.get(script_name, script_name)] += 1
+
+    if not counts:
+        return {"Latin"}
+
+    total = sum(counts.values())
+    allowed = {g for g, n in counts.items() if n / total >= threshold}
+    return allowed or {max(counts, key=counts.get)}
+
+
 # Push the model towards longer words
 def create_length_bias_vector(tokenizer, device, vocab_size):
     length_bias = torch.zeros(vocab_size, device=device)
-    latin_pattern = re.compile(r"^\p{Script=Latin}+$")
 
     for token, token_id in tokenizer.get_vocab().items():
         if token_id < vocab_size:
-            clean_token = token.lstrip("Ġ ##").strip()
-
-            if latin_pattern.match(clean_token):
-                length_bias[token_id] = math.log1p(len(clean_token))
+            clean_token = token.lstrip("Ġ ##").strip()  # noqa: B005
+            length_bias[token_id] = math.log1p(len(clean_token))
 
     return length_bias
 
@@ -46,10 +83,7 @@ def load_model():
 
 # Prediction thing
 def predict(model, tokenizer, length_bias, text, words_count, temperature=5, alpha=2):
-    if text[:-1] == " ":
-        clean_text = text
-    else:
-        clean_text = text + " "
+    clean_text = text if text.endswith(" ") else text + " "
 
     inputs = tokenizer(clean_text, return_tensors="pt").to(model.device)
 
@@ -85,6 +119,24 @@ def predict(model, tokenizer, length_bias, text, words_count, temperature=5, alp
         prob = top_probs[i].item() * 100
         candidates.append({"word": token_text, "prob": prob})
 
+    # ALready compute the right languages because optimizatiooon
+    patterns = {
+        "japanese": r"^[\p{Hiragana}\p{Katakana}\p{Han}]+$",
+        "korean": r"^\p{Hangul}+$",
+        "latin": r"^\p{Script=Latin}+$",
+        "cyrillic": r"^\p{Cyrillic}+$",
+        "greek": r"^\p{Greek}+$",
+        "arabic": r"^\p{Arabic}+$",
+        "hebrew": r"^\p{Hebrew}+$",
+    }
+    languages = check_language(text)
+    language_patterns = []
+    for i in languages:
+        language_patterns.append(re.compile(patterns[i.lower()]))
+
+    # Already define regex patterns because of optimization
+    _RE_CASE = re.compile(r"\s[A-Za-z0-9]+", re.IGNORECASE)
+
     # Eliminates bad candidates
     response = []
     words = []
@@ -92,8 +144,7 @@ def predict(model, tokenizer, length_bias, text, words_count, temperature=5, alp
         choose = True
 
         # Delete space at the start of a word (if any)
-        pattern = re.compile(r"\s[A-Za-z0-9]+", re.IGNORECASE)
-        if pattern.match(i["word"]):
+        if _RE_CASE.match(i["word"]):
             curr_word = i["word"][1:]
         else:
             curr_word = i["word"]
@@ -103,13 +154,18 @@ def predict(model, tokenizer, length_bias, text, words_count, temperature=5, alp
             if curr_word.lower() == j.lower():
                 choose = False
 
-        # Checks if every character in the word is a latin letter (no number, kanji, special character...)
-        pattern = re.compile(r"^\p{Script=Latin}+$")
-        if not pattern.match(curr_word):
+        # Check if the word is in the right language
+        language_good = False
+        for j in language_patterns:
+            if j.match(curr_word):
+                language_good = True
+                break
+        if not language_good:
             choose = False
 
         # Check if the word is minimum 3 characters
-        if len(curr_word) < 3:
+        min_char = 1 if "japanese" in languages or "korean" in languages else 3
+        if len(curr_word) < min_char:
             choose = False
 
         if choose:
