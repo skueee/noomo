@@ -45,7 +45,7 @@ def initdb(path=db_path):
         """
 
         cursor = connection.cursor()
-        cursor.execute(create_top_sentences_table)
+        cursor.executescript(create_top_sentences_table)
         connection.commit()
 
         cleanup_sentences()
