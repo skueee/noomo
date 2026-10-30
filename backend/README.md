@@ -71,6 +71,6 @@ Changing the DB_PATH environment variable will change the file used for the data
 Please execute this commands before your PR (in the virtual environment) :
 
 ```
-uvs check
+uvs checks
 ```
 It will fix and format your code, then show errors that need to be fixed manually
