@@ -21,8 +21,8 @@ def create_connection(path=db_path):
     try:
         connection = sqlite3.connect(path)
     except Error as e:
-        print(f"The error '{e}' occurred when trying to connect to the SQL database")
-        sys.exit(1)
+        raise RuntimeError(f"Could not connect to SQL DB at {path!r}") from e
+
 
     try:
         yield connection
@@ -117,8 +117,4 @@ def get_top_sentences(elements_count):
         )
         response = cursor.fetchall()
 
-        list = []
-        for i in response:
-            list.append(i[0])
-
-        return list
+        return [row[0] for row in response]
