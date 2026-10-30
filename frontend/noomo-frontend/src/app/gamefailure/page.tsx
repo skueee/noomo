@@ -7,14 +7,14 @@ import Link from "next/link";
 
 const possibleSentences = [
   "Your request failed...",
-  "The game won't launch..."
+  "The game won't launch...",
 ];
 
 const possibleBodySentences = [
   "Please relaunch a game",
   "Please retry",
-  "You can retry to launch a game"
-]
+  "You can retry to launch a game",
+];
 
 export default function NotFound() {
   return (

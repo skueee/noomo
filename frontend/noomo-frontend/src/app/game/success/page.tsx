@@ -89,7 +89,9 @@ export default function SuccessPage() {
             <span className="kalnia-title text-[40px] md:text-[48px] text-green-600 selection:bg-green-600">
               {successSentence}
             </span>
-            <span className="kalnia-main text-[40px] md:text-[48px]">{words.length}/{words.length}</span>
+            <span className="kalnia-main text-[40px] md:text-[48px]">
+              {words.length}/{words.length}
+            </span>
           </div>
 
           <div className="items-center justify-center flex flex-row flex-1 gap-10">
