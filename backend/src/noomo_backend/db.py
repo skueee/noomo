@@ -34,11 +34,14 @@ def create_connection(path=db_path):
 def initdb(path=db_path):
     with create_connection(path) as connection:
         create_top_sentences_table = """
+        PRAGMA journal_mode=WAL;
         CREATE TABLE IF NOT EXISTS top_sentences(
         sentence TEXT NOT NULL UNIQUE,
         occurence INTEGER DEFAULT 1,
         last_use DATE NOT NULL
         );
+        CREATE INDEX IF NOT EXISTS idx_top_occurence ON top_sentences(occurence DESC);
+        CREATE INDEX IF NOT EXISTS idx_top_last_use  ON top_sentences(last_use);
         """
 
         cursor = connection.cursor()
