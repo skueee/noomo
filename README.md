@@ -123,7 +123,9 @@ The model is packed into the Dockerimage to have shorter start time.
 
 A bit of AI was used when I couldn't understand something (because of my English level, or my technical skills), for research (finding tools, libraries, when a simple google research is not enough), or to help me with some "advanced" things I didn't knew about (for example, some git commands that I didn't knew how to use or errors solving in the ML part).
 
-I never straight up pasted code from AI. I used AI as a tool to learn, then I wrote myself my own code based on that or read the source provided if any and I needed more infos. 
+I never straight up pasted code from AI if it was not a redundant task. I used AI as a tool to learn, then I wrote myself my own code based on that or read the source provided if any and I needed more infos. 
+
+I used AI for redundant tasks too, like debugging the codebase (code analysis) or just to rewrite some parts (replace something that is present a lot in the codebase and needs to be changed everywhere)
 
 ---
 
