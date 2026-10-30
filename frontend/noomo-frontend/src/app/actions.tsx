@@ -10,9 +10,7 @@ const backend = "https://api.skue.hackclub.app/";
 
 // Call to the backend to get the words for the game
 export async function getPredictions(input: string, wordsCount: number = 10) {
-  const isProduction =
-    typeof process.env.NEXT_PUBLIC_VERCEL_ENV !== "undefined" &&
-    process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
+  const isProduction = process.env.VERCEL_ENV === "production";
 
   const response = await fetch(backend + "/predict", {
     cache: "no-store",
