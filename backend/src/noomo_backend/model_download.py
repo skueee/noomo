@@ -14,11 +14,11 @@ from huggingface_hub import snapshot_download
 # Checks if in the right dir (to download to the right dir)
 def dir_check():
     if not os.path.isfile("main.py"):
-        print("Please run this from the root of the project backend")
+        print("Please run this from the root of the project backend (/noomo/backend)")
         sys.exit(1)
 
-    if not os.path.isdir("models"):
-        os.mkdir("models")
+    if not os.path.isdir("model"):
+        os.mkdir("model")
 
 
 def download(out):
