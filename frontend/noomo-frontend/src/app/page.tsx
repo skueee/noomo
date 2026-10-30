@@ -104,8 +104,9 @@ export default function Home() {
 
               <button
                 type="submit"
+                disabled={!sentence.trim()}
                 aria-label="submit"
-                className="cursor-pointer mt-1 mx-auto inline-flex items-center justify-center gap-2 px-3 w-[70px] h-[70px] rounded-[15px] bg-foreground text-background hover:bg-opacity-90 transition-colors"
+                className="disabled:opacity-80 disabled:cursor-default cursor-pointer mt-1 mx-auto inline-flex items-center justify-center gap-2 px-3 w-[70px] h-[70px] rounded-[15px] bg-foreground text-background hover:bg-opacity-90 transition-colors"
               >
                 <ArrowRightIcon size={52} />
               </button>
