@@ -171,7 +171,7 @@ export default function Game() {
               autoFocus
               className="kalnia-main text-[32px] w-full h-full py-2 px-3 rounded-lg focus:outline-none text-foreground -mt-1"
             />
-            <a className="kalnia-main text-[48px]">{score}/10</a>
+            <a className="kalnia-main text-[48px]">{score}/{words.length}</a>
           </div>
 
           <div className="w-full h-full items-center justify-center flex p-6 overflow-hidden">
