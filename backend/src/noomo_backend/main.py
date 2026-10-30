@@ -2,16 +2,16 @@
 # Copyright (C) 2026  skueee
 
 import asyncio
-
+from concurrent.futures import ThreadPoolExecutor
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, concurrency
 from pydantic import BaseModel
-from concurrent.futures import ThreadPoolExecutor
 
 from . import dailychallenges, db, model_script
 
 _predict_executor: ThreadPoolExecutor | None = None
+
 
 # The request body for /predict
 class PredictionsConfig(BaseModel):

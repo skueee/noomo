@@ -3,7 +3,6 @@
 
 import os
 import sqlite3
-import sys
 import time
 from contextlib import contextmanager
 from pathlib import Path
@@ -22,7 +21,6 @@ def create_connection(path=db_path):
         connection = sqlite3.connect(path)
     except Error as e:
         raise RuntimeError(f"Could not connect to SQL DB at {path!r}") from e
-
 
     try:
         yield connection
