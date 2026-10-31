@@ -18,6 +18,8 @@ const possibleGoodLuckSentences = [
   "You can do it !",
   "It's not thaaat hard, you know...",
   "Give it a try !",
+  "Just a pesky LLM, nothing too hard",
+  "This experience is recommended to live with a working brain",
 ];
 
 export default function Home() {

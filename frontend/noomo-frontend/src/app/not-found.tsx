@@ -6,11 +6,13 @@
 import Link from "next/link";
 
 const possibleSentences = [
-  "Not the right page, mate",
-  "You should not be here ?",
-  "Hum, let's get back to home, shall we ?",
+  "404. Not the right page, mate",
+  "404. You should not be here ?",
+  "404. Hum, let's get back to home, shall we ?",
   "404, I'm not a teapot",
-  "YOU ended up here. This is not MY fault. Or probably not",
+  "404. YOU ended up here. This is not MY fault. Or probably not",
+  "404. This isn't the right place to go",
+  "404. I mean, you are free to explore wherever you want to go...",
 ];
 
 export default function NotFound() {

@@ -25,6 +25,10 @@ const inputPlaceholderSentences = [
   "Make a suppostition...",
   "Any idea ?",
   "Harder than you tought, uh ?",
+  "You can find it !",
+  "You won't loose against an AI, would you ?",
+  "It's pretty easy to guess",
+  "I can guess this without even looking at it",
 ];
 
 export default function Game() {
@@ -114,6 +118,7 @@ export default function Game() {
       const result = await getDailyChallenge();
       setWords(result.words);
       setSentence(result.sentence);
+      setMaxClues(5);
     }
 
     const gamemode = sessionStorage.getItem("gamemode");
