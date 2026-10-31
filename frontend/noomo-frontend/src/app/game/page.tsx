@@ -114,6 +114,7 @@ export default function Game() {
       const result = await getDailyChallenge();
       setWords(result.words);
       setSentence(result.sentence);
+      setMaxClues(5)
     }
 
     const gamemode = sessionStorage.getItem("gamemode");
