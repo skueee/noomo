@@ -23,6 +23,10 @@ const possibleSuccessSentence = [
   "I'm honestly impressed",
   "Wowieee !",
   "Not bad, not bad",
+  "Nice one !",
+  "Pretty good work",
+  "That's very nice",
+  "Yayy, you won !",
 ];
 
 export default function SuccessPage() {

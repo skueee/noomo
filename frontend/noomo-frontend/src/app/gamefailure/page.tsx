@@ -14,6 +14,7 @@ const possibleBodySentences = [
   "Please relaunch a game",
   "Please retry",
   "You can retry to launch a game",
+  "Maybe you could restart a game ?",
 ];
 
 export default function NotFound() {
