@@ -13,3 +13,8 @@ If you have any suggestion, please open an issue or contact @skueee on Slack (if
 - [X] Disallow multiple executions of predict ?
 - [X] Better loading in frontend (timeout so it does not load indefinitely if crash)
 - [ ] Predict an entire sentence (not priority)
+- [ ] Little tutorial for first time players
+- [ ] Some words does not make any sense
+- [ ] Category-based games (predict the food...)
+- [ ] The website is stuck on loading ?
+- [ ] Better/more diverse hints ?
